@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Գաղտնիության քաղաքականություն - ProfRates</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: url("background.jpg") no-repeat center center fixed;
+      background-size: cover;
+      color: #000;
+      line-height: 1.6;
+    }
+
+    header {
+      /*background-color: #4b2ea7;*/
+      background: linear-gradient(135deg, #6b46c1 0%, #7c3aed 100%);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 40px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 22px;
+    }
+
+    .logo img {
+      height: 50px;
+      width: auto;
+      object-fit: contain;
+      border-radius: 5px;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .nav-actions button {
+      background-color: #fff;
+      color: #4b2ea7;
+      border: none;
+      border-radius: 10px;
+      padding: 10px 28px;
+      font-weight: 600;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .nav-actions button:hover {
+      opacity: 0.85;
+    }
+
+    .nav-actions a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 18px;
+    }
+
+    .language-inline {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: white;
+      font-weight: 600;
+      font-family: inherit;
+    }
+
+    .language-inline img {
+      height: 20px;
+      width: 20px;
+      object-fit: contain;
+      vertical-align: middle;
+    }
+
+    .nav-actions > *:not(:last-child) {
+      margin-right: 10px;
+    }
+
+    .language-inline span:hover {
+      opacity: 0.85;
+      cursor: pointer;
+    }
+
+    main {
+      max-width: 900px;
+      margin: 60px auto;
+      padding: 40px;
+      background: rgba(255, 255, 255, 0.3); /* 30% transparency white background */
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      text-align: center;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 25px;
+      color: #000;
+    }
+
+    .policy-index {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+
+    .policy-index ol {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      text-align: center;
+      display: inline-block;
+    }
+
+    .policy-index li {
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+
+    .policy-index a {
+      color: black;
+      text-decoration: none;
+    }
+
+    .policy-index a:visited {
+      color: black;
+    }
+
+    .policy-index a:hover {
+      text-decoration: underline;
+    }
+
+    h2 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-top: 30px;
+      margin-bottom: 10px;
+      color: #000;
+      text-align: left;
+    }
+
+    p, ul {
+      color: #000;
+      text-align: left;
+    }
+
+    ul {
+      margin: 10px 0 15px 25px;
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: 6px;
+    }
+
+    footer {
+      /*background-color: #4b2ea7;*/
+      background: linear-gradient(135deg, #6b46c1 0%, #7c3aed 100%);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 15px 0;
+      margin-top: 40px;
+    }
+
+    footer a {
+      color: white;
+      text-decoration: none;
+      margin: 0 10px;
+      font-weight: 600;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    footer p {
+      margin-top: 8px;
+      font-size: 14px;
+      color: #fff;
+    }
+
+    footer div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 10px;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+      }
+
+      main {
+        margin: 20px;
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="logo.png" alt="ProfRates logo" />
+      ProfRates
+    </div>
+
+    <div class="nav-actions">
+      <div class="language-inline">
+        <img src="white-logo.png" alt="Language icon">
+        <a href="privacy_eng_guest.html">Eng</a>
+      </div>
+      <a href="login_arm.html">Մուտք</a>
+    </div>
+  </header>
+
+  <main>
+    <h1>Գաղտնիության քաղաքականություն</h1>
+
+    <div class="policy-index">
+      <ol>
+        <li><a href="#effective-date">1. Գործողության սկզբի ամսաթիվ</a></li>
+        <li><a href="#introduction">2. Ներածություն</a></li>
+        <li><a href="#information-we-collect">3. Ինչ տեղեկատվություն ենք մենք հավաքում</a></li>
+        <li><a href="#use-of-information">4. Ինչպես ենք օգտագործում ձեր տվյալները</a></li>
+        <li><a href="#legal-basis">5. Տվյալների մշակման իրավական հիմքերը</a></li>
+        <li><a href="#data-retention">6. Տվյալների պահպանում</a></li>
+        <li><a href="#data-security">7. Տվյալների անվտանգություն</a></li>
+        <li><a href="#your-rights">8. Ձեր իրավունքները</a></li>
+        <li><a href="#third-party">9. Երրորդ կողմի ծառայություններ</a></li>
+        <li><a href="#changes">10. Քաղաքականության փոփոխություններ</a></li>
+        <li><a href="#contact">11. Կապ մեզ հետ</a></li>
+      </ol>
+    </div>
+
+    <h2 id="effective-date">1. Գործողության սկզբի ամսաթիվ</h2>
+    <p>Այս Գաղտնիության քաղաքականությունը ուժի մեջ է մտնում <strong>2025 թվականի սեպտեմբերի 29-ից։</strong></p>
+
+    <h2 id="introduction">2. Ներածություն</h2>
+    <p><strong>ProfRate</strong>-ը պարտավորվում է պաշտպանել մեր օգտատերերի գաղտնիությունը։ Այս Գաղտնիության քաղաքականությունը բացատրում է, թե ինչպես ենք մենք հավաքում, օգտագործում և պաշտպանում ձեր անձնական տվյալները։</p>
+
+    <h2 id="information-we-collect">3. Ինչ տեղեկատվություն ենք մենք հավաքում</h2>
+    <ul>
+      <li><strong>Հաշվի տվյալներ․</strong> Անուն, էլ. փոստի հասցե և գաղտնաբառ։</li>
+      <li><strong>Օգտատիրոջ բովանդակություն․</strong> Գնահատականներ, մեկնաբանություններ։</li>
+      <li><strong>Տեխնիկական տվյալներ․</strong> IP հասցե, բրաուզերի տեսակ, էջեր։</li>
+      <li><strong>Կուկիներ․</strong> Նստաշրջանային և վերլուծական կուկիներ։</li>
+    </ul>
+
+    <h2 id="use-of-information">4. Ինչպես ենք օգտագործում ձեր տվյալները</h2>
+    <p>Մենք օգտագործում ենք ձեր տվյալները՝ ծառայությունները բարելավելու և ապահովելու համար։</p>
+
+    <h2 id="legal-basis">5. Տվյալների մշակման իրավական հիմքերը</h2>
+    <p>Ձեր տվյալները մշակում ենք համաձայնության, պայմանագրի և օրենքի հիման վրա։</p>
+
+    <h2 id="data-retention">6. Տվյալների պահպանում</h2>
+    <p>Մենք պահպանում ենք տվյալները այնքան ժամանակ, որքան անհրաժեշտ է այս քաղաքականությամբ սահմանված նպատակների համար։</p>
+
+    <h2 id="data-security">7. Տվյալների անվտանգություն</h2>
+    <p>Կիրառում ենք անվտանգության միջոցառումներ՝ ձեր տվյալները պաշտպանելու համար։</p>
+
+    <h2 id="your-rights">8. Ձեր իրավունքները</h2>
+    <p>Դուք կարող եք մուտք գործել, ուղղել կամ ջնջել ձեր տվյալները ցանկացած պահի։</p>
+
+    <h2 id="third-party">9. Երրորդ կողմի ծառայություններ</h2>
+    <p>Կարող ենք օգտագործել վստահելի վերլուծական կամ հոսթինգի ծառայություններ։</p>
+
+    <h2 id="changes">10. Քաղաքականության փոփոխություններ</h2>
+    <p>Մենք կարող ենք պարբերաբար թարմացնել այս քաղաքականությունը։</p>
+
+    <h2 id="contact">11. Կապ մեզ հետ</h2>
+    <p>Կապվեք մեզ հետ՝ <strong>privacy@profrate.app</strong> հասցեով։</p>
+  </main>
+
+  <footer>
+    <div>
+      <a href="home_arm_guest.html">Գլխավոր</a>
+      <a href="about_arm_guest.html">Մասին</a>
+      <a href="#">Գաղտնիություն</a>
+    </div>
+    <p>© 2025 ProfRates Բոլոր իրավունքները</p>
+  </footer>
+  </body>
+</html> 

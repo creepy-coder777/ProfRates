@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sign Up</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      height: 100%;
+      font-family: sans-serif;
+      background-color: #F1EFFF;
+    }
+
+    .wrapper {
+      display: flex;
+      height: 100vh;
+      width: 100vw;
+    }
+
+    .left, .right {
+      flex: 1;
+      position: relative;
+    }
+
+    .right {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .form-container {
+      width: 450px;
+      background-color: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    h1 {
+      font-size: 34px;
+      margin-bottom: 16px;
+      color: #2D2775;
+      font-weight: 600;
+    }
+
+    .p1 {
+      color: #666666;
+      margin-top: 0;
+      margin-bottom: 20px;
+      font-size: 14px;
+    }
+
+    .a1 {
+      color: #6145b1;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .name {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 16px 18px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 15px;
+      background-color: white;
+      box-sizing: border-box;
+      font-family: inherit;
+    }
+
+    input:focus, select:focus {
+      outline: none;
+      border-color: #6145b1;
+    }
+
+    .mail, .pass, .menu {
+      margin-bottom: 10px;
+    }
+
+    .submit {
+      width: 100%;
+      padding: 14px 0;
+      background-color: #6145b1;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      text-align: center;
+      transition: background-color 0.3s ease, transform 0.2s, box-shadow 0.2s;    
+    }
+
+    .submit:hover {
+      background-color: #4e3791;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(107, 70, 193, 0.4);
+    }
+
+    .pic {
+      width: 50vw;
+      height: 100vh;
+      object-fit: cover;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+
+    .frame-2 {
+      border-radius: 19px;
+      padding: 22px 10px;
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+      align-items: center;
+      justify-content: flex-start;
+      width: 328px;
+      height: 37px;
+      position: absolute;
+      left: 37px;
+      top: 8px;
+    }
+
+    .language {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      position: relative;
+      overflow: visible;
+    }
+
+    a.home, a.about, a.privacy {
+      color: #6145b1;
+      text-align: center;
+      font-family: "Inter-ExtraBold", sans-serif;
+      font-size: 23px;
+      line-height: 0px;
+      font-weight: 600;
+      position: relative;
+      text-decoration: none;
+    }
+
+    .menu {
+      color: #666666;
+    }
+
+    .menu option[disabled] {
+      color: #6145b1;
+      font-weight: 600;
+    }
+
+    @media (max-width: 768px) {
+      html, body {
+        overflow: auto;
+      }
+
+      .wrapper {
+        flex-direction: column;
+      }
+
+      .left, .right {
+        flex: none;
+        width: 100%;
+      }
+
+      .form-container {
+        margin: 40px auto;
+      }
+
+      .pic {
+        width: 100%;
+        height: auto;
+        position: relative;
+      }
+
+      .frame-2 {
+        position: relative;
+        top: auto;
+        left: auto;
+        margin: 20px;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="left">
+      <img class="pic" src="illustration.jpeg" />
+      <div class="frame-2">
+        <a href="sign up_arm.html">
+          <img class="language" src="language.png" alt="Language icon" />
+        </a>
+        <a class="home" href="home_eng_guest.html">Home</a>
+        <a class="about" href="about_guest_eng.html">About</a>
+        <a class="privacy" href="privacy_eng_guest.html">Privacy</a>
+      </div>
+    </div>
+    <div class="right">
+      <div class="form-container">
+        <h1>Create an account</h1>
+        <p class="p1">Already have an account? <a href="login_eng.html" class="a1">Log in</a></p>
+
+        <div class="form">
+          <div class="name">
+            <input type="text" placeholder="First Name" class="fname" />
+            <input type="text" placeholder="Last Name" class="lname" />
+          </div>
+          <input type="email" placeholder="Email" class="mail" />
+          <input type="password" placeholder="Password" class="pass" />
+          <select class="menu">
+            <option disabled selected>Choose your faculty</option>
+            <option>Cybersecurity</option>
+            <option>Web Development</option>
+            <option>Software Engineering</option>
+            <option>Data Science</option>
+            <option>Cloud Computing</option>
+          </select>
+          <button class="submit" onclick="window.location.href='login_eng.html'">Sign up</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About ProfRates</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: url("background.jpg") no-repeat center center fixed;
+      background-size: cover;
+      color: #000;
+      line-height: 1.6;
+    }
+
+    header {
+      /*background-color: #4b2ea7;*/
+      background: linear-gradient(135deg, #6b46c1 0%, #7c3aed 100%);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 40px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 22px;
+    }
+
+    .logo img {
+      height: 50px;
+      width: auto;
+      object-fit: contain;
+      border-radius: 5px;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .language-inline {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: white;
+      font-weight: 600;
+      font-family: inherit;
+    }
+
+    .language-inline img {
+      height: 20px;
+      width: 20px;
+      object-fit: contain;
+      vertical-align: middle;
+    }
+
+    .nav-actions button {
+      background-color: #fff;
+      color: #4b2ea7;
+      border: none;
+      border-radius: 10px;
+      padding: 10px 28px;
+      font-weight: 600;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .nav-actions button:hover {
+      opacity: 0.85;
+    }
+
+    .nav-actions a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 18px;
+    }
+
+    .nav-actions > *:not(:last-child) {
+      margin-right: 10px;
+    }
+
+    .language-inline span:hover {
+      opacity: 0.85;
+      cursor: pointer;
+    }
+
+    main {
+      max-width: 900px;
+      margin: 60px auto;
+      padding: 40px;
+      background: rgba(255, 255, 255, 0.3); /* 30% transparent white */
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 30px;
+      color: #000;
+    }
+
+    h2 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-top: 30px;
+      margin-bottom: 10px;
+      color: #000;
+    }
+
+    p,
+    li {
+      color: #000;
+    }
+
+    ul {
+      margin: 10px 0 15px 25px;
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: 6px;
+    }
+
+    footer {
+      /*background-color: #4b2ea7;*/
+      background: linear-gradient(135deg, #6b46c1 0%, #7c3aed 100%);
+      color: white;
+      text-align: center;
+      padding: 15px 0;
+      margin-top: 40px;
+    }
+
+    footer a {
+      color: white;
+      text-decoration: none;
+      margin: 0 10px;
+      font-weight: 600;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    footer p {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #fff;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+      }
+
+      main {
+        margin: 20px;
+        padding: 25px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo">
+      <img src="logo.png" alt="ProfRates logo" />
+      ProfRates
+    </div>
+
+    <div class="nav-actions">
+      <button>My rates</button>
+      <div class="language-inline">
+        <img src="white-logo.png" alt="Language icon" />
+        <a href="about_armenian.html">Arm</a>
+      </div>
+      <a href="login_eng.html">Logout</a>
+    </div>
+  </header>
+
+  <main>
+    <h1>About ProfRates</h1>
+
+    <p>
+      <strong>ProfRates</strong> is an independent platform designed to help
+      students make informed academic decisions by providing transparent,
+      student-driven ratings of university faculty. Our goal is to bridge the
+      gap between course selection and real classroom experience, offering a
+      reliable source of insight into teaching quality, subject expertise, and
+      faculty engagement.
+    </p>
+
+    <h2>Our Mission</h2>
+    <p>
+      We believe that every student deserves access to clear, unbiased
+      information when choosing their professors. ProfRates exists to empower
+      students with the tools they need to evaluate faculty based on actual
+      performance, not just reputation. By aggregating verified ratings and
+      reviews, we aim to foster a more informed, accountable, and
+      student-centered academic environment.
+    </p>
+
+    <h2>What We Offer</h2>
+    <p>ProfRates provides a simple interface where students can:</p>
+    <ul>
+      <li>Browse faculty profiles across engineering disciplines</li>
+      <li>View star-based ratings and written feedback from peers</li>
+      <li>Filter professors by department, rating, or name</li>
+      <li>Explore areas of expertise and teaching focus</li>
+      <li>Identify top-rated faculty based on student feedback</li>
+    </ul>
+
+    <p>
+      Each professor profile includes a summary of their specialization, rating,
+      and a short description of their academic strengths. The platform is
+      mobile-friendly and easy to navigate — designed to give students the
+      information they need quickly and confidently.
+    </p>
+
+    <h2>Why ProfRates Matters</h2>
+    <p>
+      Course selection is one of the most impactful decisions students make each
+      semester. Yet too often, students rely on incomplete or outdated
+      information. ProfRates bridges that gap by creating a transparent,
+      data-driven community for academic feedback and decision-making.
+    </p>
+
+    <h2>By Students, For Students</h2>
+    <p>
+      <b>Profrates</b> was created with a deep understanding of student needs.
+      Every feature—from the logic behind filters to the layout of rating
+      cards—has been designed to prioritize clarity, ease of use, and relevance.
+      We continuously improve the platform based on user feedback, ensuring it
+      evolves alongside the academic community it serves.
+    </p>
+
+    <h2>Commitment To Integrity</h2>
+    <p>
+      We take the authenticity of feedback seriously. All ratings are submitted
+      by verified users, and our moderation system ensures that responses remain
+      constructive and respectful. Our goal isn't to randomly rank professors,
+      but to provide a meaningful picture of their teaching impact—based on
+      consistent, thoughtful student opinions.
+    </p>
+  </main>
+
+  <footer>
+    <div>
+      <a href="home_eng.html">Home</a>
+      <a href="#">About</a>
+      <a href="privacy_eng.html">Privacy</a>
+    </div>
+    <p>© 2025 ProfRates All Rights Reserved</p>
+  </footer>
+</body>
+</html>

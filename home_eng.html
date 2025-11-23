@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProfRates - Computer Science and Network</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background-image: url('background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #6b46c1 0%, #7c3aed 100%);
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 3px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: white;
+            font-size: 26px;
+            font-weight: 700;
+        }
+
+        .logo img {
+            width: 40px;
+            height: 40px;
+        }
+
+        .center-nav {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: opacity 0.2s;
+        }
+
+        .nav-link:hover {
+            opacity: 0.85;
+        }
+
+        .icon {
+            font-size: 20px;
+        }
+
+        .globe-icon {
+            width: 22px;
+            height: 22px;
+        }
+
+        .right-nav {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            position: relative;
+        }
+
+        .my-rates-btn {
+            background: white;
+            color: #6b46c1;
+            padding: 10px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 17px;
+        }
+
+        .logout-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logout-btn {
+            font-size: 18px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .dropdown-toggle {
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            transition: transform 0.3s;
+            user-select: none;
+        }
+
+        .dropdown-toggle:hover {
+            opacity: 0.85;
+        }
+
+        .dropdown-toggle.open {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            margin-top: 10px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .dropdown-menu.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-item {
+            display: block;
+            padding: 12px 20px;
+            color: #6b46c1;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            transition: background 0.2s;
+            text-align: center;
+        }
+
+        .dropdown-item:hover {
+            background: #f3f0ff;
+        }
+
+        /* Main Content */
+        main {
+        max-width: 1300px;
+        margin: 0 auto;
+        padding: 50px 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        }
+        h1 {
+            font-size: 42px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 40px;
+        }
+
+        /* Filters */
+        .filters {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 50px;
+            max-width: 1050px;
+        }
+
+        .filter-group {
+            flex: 1;
+        }
+
+        .filter-select {
+            width: 100%;
+            padding: 12px 18px;
+            border: 2px solid #e5e5e5;
+            border-radius: 10px;
+            font-size: 15px;
+            color: #666;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%23666' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            padding-right: 45px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px 18px 12px 42px;
+            border: 2px solid #e5e5e5;
+            border-radius: 10px;
+            font-size: 15px;
+            color: #666;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            background-image: url("data:image/svg+xml,%3Csvg width='18' height='18' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M9 17A8 8 0 1 0 9 1a8 8 0 0 0 0 16zM18 18l-4-4' stroke='%23666' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: left 14px center;
+        }
+
+        /* Professors Grid */
+        .professors-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 28px;
+            margin-bottom: 50px;
+            max-width: 1050px;
+        }
+
+        .professor-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            padding: 35px;
+            display: flex;
+            gap: 30px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.06);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .professor-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .professor-image {
+            width: 125px;
+            height: 125px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .professor-info {
+            flex: 1;
+        }
+
+        .professor-name {
+            font-size: 25px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+        }
+
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 3px;
+            margin-bottom: 10px;
+        }
+
+        .star {
+            color: #fbbf24;
+            font-size: 21px;
+        }
+
+        .rating-number {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-left: 4px;
+        }
+
+        .professor-department {
+            font-size: 17px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 7px;
+        }
+
+        .professor-description {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        /* View Top Professors Button */
+        .view-top-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .view-top-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: white;
+            color: #6b46c1;
+            padding: 16px 35px;
+            border-radius: 50px;
+            font-size: 19px;
+            font-weight: 700;
+            text-decoration: none;
+            box-shadow: 0 3px 15px rgba(107, 70, 193, 0.15);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .view-top-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(107, 70, 193, 0.25);
+        }
+
+        .plus-icon {
+            width: 28px;
+            height: 28px;
+            background: #6b46c1;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: 400;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #6b46c1 0%, #7c3aed 100%);
+            padding: 25px 0;
+            text-align: center;
+            color: white;
+            font-size: 16px;
+            font-weight: 500;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <img src="logo.png" alt="ProfRates Logo">
+                <span>ProfRates</span>
+            </div>
+            <div class="center-nav">
+                <a href="#" class="nav-link"><span class="icon"></span> Home</a>
+                <a href="about.html" class="nav-link"><span class="icon"></span> About</a>
+                <a href="privacy_eng.html" class="nav-link"><span class="icon"></span> Privacy</a>
+                <a href="home_arm.html" class="nav-link">
+                    <img src="white-logo.png" alt="Globe" class="globe-icon">
+                    Arm
+                </a>
+            </div>
+            <div class="right-nav">
+                <a href="#" class="nav-link my-rates-btn">My rates</a>
+                <div class="logout-wrapper">
+                    <a href="login_eng.html" class="nav-link logout-btn">Logout</a>
+                    <span class="dropdown-toggle" id="dropdownToggle">▼</span>
+                    <div class="dropdown-menu" id="dropdownMenu">
+                        <a href="edit_profile.html" class="dropdown-item">Edit Profile</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <h1>Computer science and network</h1>
+
+        <div class="filters">
+            <div class="filter-group">
+                <select class="filter-select">
+                    <option>Filter by faculty</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <select class="filter-select">
+                    <option>Filter by rating</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <input type="text" class="search-input" placeholder="Search by professor name">
+            </div>
+        </div>
+
+        <div class="professors-grid">
+            <!-- Professor 1 -->
+            <div class="professor-card">
+                <img src="Ann_Johnson.jpg" alt="Ann Johnson" class="professor-image">
+                <div class="professor-info">
+                    <h2 class="professor-name">Ann Johnson</h2>
+                    <div class="rating">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="rating-number">4.5</span>
+                    </div>
+                    <div class="professor-department">Computer Science</div>
+                    <p class="professor-description">Expert in software engineering and computer systems.</p>
+                </div>
+            </div>
+
+            <!-- Professor 2 -->
+            <div class="professor-card">
+                <img src="Tom_Miller.jpg" alt="Tom Miller" class="professor-image">
+                <div class="professor-info">
+                    <h2 class="professor-name">Tom Miller</h2>
+                    <div class="rating">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="rating-number">4.7</span>
+                    </div>
+                    <div class="professor-department">Civil Engineering</div>
+                    <p class="professor-description">Expert in structural design, construction methods, and civil infrastructure systems.</p>
+                </div>
+            </div>
+
+            <!-- Professor 3 -->
+            <div class="professor-card">
+                <img src="David_Collins.jpg" alt="David Collins" class="professor-image">
+                <div class="professor-info">
+                    <h2 class="professor-name">David Collins</h2>
+                    <div class="rating">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="rating-number">3.6</span>
+                    </div>
+                    <div class="professor-department">Machine Learning</div>
+                    <p class="professor-description">Expert in intelligent algorithms, predictive modeling, and data-driven system optimization.</p>
+                </div>
+            </div>
+
+            <!-- Professor 4 -->
+            <div class="professor-card">
+                <img src="Joyce_Parker.jpg" alt="Joyce Parker" class="professor-image">
+                <div class="professor-info">
+                    <h2 class="professor-name">Joyce Parker</h2>
+                    <div class="rating">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="rating-number">4.0</span>
+                    </div>
+                    <div class="professor-department">OOP Engineer</div>
+                    <p class="professor-description">Expert in object-oriented design, modular architecture, and scalable software development.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="view-top-container">
+            <a href="#" class="view-top-btn">
+                <span class="plus-icon">+</span>
+                View Top Professors
+            </a>
+        </div>
+    </main>
+
+    <footer>
+        © 2025 ProfRates All Rights Reserved
+    </footer>
+
+    <script>
+        const dropdownToggle = document.getElementById('dropdownToggle');
+        const dropdownMenu = document.getElementById('dropdownMenu');
+
+        dropdownToggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            dropdownMenu.classList.toggle('show');
+            dropdownToggle.classList.toggle('open');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!dropdownMenu.contains(e.target) && e.target !== dropdownToggle) {
+                dropdownMenu.classList.remove('show');
+                dropdownToggle.classList.remove('open');
+            }
+        });
+    </script>
+</body>
+</html>

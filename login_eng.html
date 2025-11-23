@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      height: 100%;
+      font-family: sans-serif;
+      background-color: #F1EFFF;
+    }
+
+    .wrapper {
+      display: flex;
+      height: 100vh;
+      width: 100vw;
+    }
+
+    .left, .right {
+      flex: 1;
+      position: relative;
+    }
+
+    .right {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .form-container {
+      width: 450px;
+      background-color: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    h1 {
+      font-size: 32px;
+      margin-bottom: 10px;
+      color: #2D2775;
+      font-weight: 600;
+    }
+
+    .p1 {
+      color: #666666;
+      margin-top: 0;
+      margin-bottom: 20px;
+      font-size: 12px;
+    }
+
+    .p3 {
+      color: #666666;
+      margin-top: 0;
+      margin-bottom: 20px;
+    }
+
+    .a1 {
+      color: #6145b1;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 16px;
+      background-color: white;
+      box-sizing: border-box;
+    }
+
+    input:focus, select:focus {
+      outline: none;
+      border-color: #6145b1;
+    }
+
+    .mail, .pass {
+      margin-bottom: 10px;
+    }
+
+    .check{
+      margin-bottom: 6px;
+    }
+    .submit {
+      width: 100%;
+      padding: 14px 0;
+      background-color: #6145b1;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      text-align: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .submit:hover {
+      background-color: #4e3791;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(107, 70, 193, 0.4);
+    }
+
+    .pic {
+      width: 50vw;
+      height: 100vh;
+      object-fit: cover;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+
+    .frame-2 {
+      border-radius: 19px;
+      padding: 22px 10px;
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+      align-items: center;
+      justify-content: flex-start;
+      width: 328px;
+      height: 37px;
+      position: absolute;
+      left: 37px;
+      top: 8px;
+    }
+
+    .language {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      position: relative;
+    }
+
+    .home, .about, .privacy {
+      color: #6145b1;
+      text-align: center;
+      font-family: "Inter-ExtraBold", sans-serif;
+      font-size: 23px;
+      line-height: 0px;
+      font-weight: 600;
+      position: relative;
+    }
+
+    a.home, a.about, a.privacy {
+      text-decoration: none;
+    }
+
+    .check-container {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+
+    .check {
+      accent-color: #2D2775;
+      width: 15px;
+      height: 15px;
+    }
+
+    .p2 {
+      font-size: 10px;
+      color: #2D2775;
+    }
+
+    @media (max-width: 768px) {
+      html, body {
+        overflow: auto;
+      }
+
+      .wrapper {
+        flex-direction: column;
+      }
+
+      .left, .right {
+        flex: none;
+        width: 100%;
+      }
+
+      .form-container {
+        margin: 40px auto;
+      }
+
+      .pic {
+        width: 100%;
+        height: auto;
+        position: relative;
+      }
+
+      .frame-2 {
+        position: relative;
+        top: auto;
+        left: auto;
+        margin: 20px;
+        justify-content: center;
+      }
+    }
+
+    .sample{
+      background-color: rgba(0, 0, 0, 0.3);
+      opacity: 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      transition: all 0.3s ease-in-out;
+      z-index: -1;
+      display: flex; 
+      align-items: center;
+      justify-content: center;
+    }
+
+    .sample.open{
+      opacity: 1;
+      z-index: 999;
+    }
+
+    .sample-inner {
+    position: relative; 
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    padding: 25px;
+    text-align: center;
+    width: 400px;
+    min-height: 250px;
+    background-size: cover;
+    background-position: center;
+}
+
+.sample-inner h2 {
+  margin: 20px;
+  font-size: 30px;
+  font-weight: 600;
+  color:#4e3791;
+}
+
+.sample-inner p {
+  font-size: 15px;
+  color:rgba(0, 0, 0, 0.8);
+  margin: 15px 0;
+  line-height: 1.5;
+}
+.sample button{
+  margin-top: 10px;
+}
+.close-icon {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #4e3791;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.close-icon:hover {
+  color: #8853bd;
+}
+
+
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="left">
+      <img class="pic" src="illustration.jpeg" alt="Illustration"/>
+      <div class="frame-2">
+        <a href="login_arm.html">
+          <img class="language" src="language.png" alt="Language icon" />
+        </a>
+        <a class="home" href="home_eng_guest.html">Home</a>
+        <a class="about" href="about_guest_eng.html">About</a>
+        <a class="privacy" href="privacy_eng_guest.html">Privacy</a>
+      </div>
+    </div>
+    <div class="right">
+      <div class="form-container">
+        <h1>Login</h1>
+        <p class="p3">Login to your account</p>
+
+        <div class="form">
+          <input type="email" placeholder="Email" class="mail" />
+          <input type="password" placeholder="Password" class="pass" />
+          <div class="check-container">
+            <input type="checkbox" class="check" />
+            <p class="p2">Remember me?</p>
+          </div>
+          <p class="p1">
+            <a class="a1" id="open" href="#">Forgot password?</a>
+          </p>
+          <p class="p1">Don't have an account? <a href="sign up_eng.html" class="a1">Sign up</a></p>
+          <button class="submit">Login</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sample" id="popupEmail">
+    <div class="sample-inner">
+      <span class="close-icon" id="closeEmail">&times;</span>
+      <h2>Forgot password?</h2>
+      <p>Enter your email address and we'll send you a reset link.</p>
+      <div class="form">
+        <input type="email" placeholder="Email" class="mail" id="fpEmail" />
+      </div>
+      <button id="sendLink" class="submit">Send Reset Link</button>
+    </div>
+  </div>
+
+  <div class="sample" id="popupCode">
+    <div class="sample-inner">
+      <span class="close-icon" id="closeCode">&times;</span>
+      <h2>Enter reset code</h2>
+      <p>We've sent a 6-digit code to example@domain.com.<br>Please enter it below.</p>
+      <div class="form">
+        <input type="text" placeholder="Enter code" class="mail" id="fpCode" />
+      </div>
+      <button id="verifyCode" class="submit">Verify Code</button>
+    </div>
+  </div>
+
+
+  <div class="sample" id="popupPassword">
+    <div class="sample-inner">
+      <span class="close-icon" id="closePassword">&times;</span>
+      <h2>Enter new password</h2>
+      <p>Enter your new password and confirm it.</p>
+      <div class="form">
+        <input type="password" placeholder="New password" class="mail" id="fpNewPass" />
+        <input type="password" placeholder="Confirm password" class="mail" id="fpConfirmPass" />
+      </div>
+      <button id="resetPassword" class="submit">Reset</button>
+    </div>
+  </div>
+
+  <script src="script2.js"></script>
+</body>
+</html>
