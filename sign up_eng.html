@@ -159,6 +159,18 @@
       font-weight: 600;
     }
 
+    .error-message {
+      color: #e74c3c;
+      font-size: 12px;
+      margin-top: 4px;
+      margin-bottom: 10px;
+      display: none;
+    }
+
+    .error-message.show {
+      display: block;
+    }
+
     @media (max-width: 768px) {
       html, body {
         overflow: auto;
@@ -213,20 +225,54 @@
 
         <div class="form">
           <div class="name">
-            <input type="text" placeholder="First Name" class="fname" />
-            <input type="text" placeholder="Last Name" class="lname" />
+            <input type="text" placeholder="First Name" class="fname" id="fname" />
+            <input type="text" placeholder="Last Name" class="lname" id="lname" />
           </div>
-          <input type="email" placeholder="Email" class="mail" />
-          <input type="password" placeholder="Password" class="pass" />
-          <select class="menu">
+          <input type="email" placeholder="Email" class="mail" id="email" />
+          <div class="error-message" id="emailError">Please enter a valid university email (e.g., example@polytechnic.am).</div>
+          <input type="password" placeholder="Password" class="pass" id="password" />
+          <div class="error-message" id="passwordError">The Password field is required.</div>
+          <select class="menu" id="menu">
             <option disabled selected>Choose your chair</option>
             <option>Computer systems and networks</option>
             <option>Information security and software provision</option>
           </select>
-          <button class="submit" onclick="window.location.href='login_eng.html'">Sign up</button>
+          <button class="submit" id="submitBtn">Sign up</button>
         </div>
       </div>
     </div>
   </div>
+
+  <script>
+    document.getElementById('submitBtn').addEventListener('click', function() {
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value.trim();
+      const emailError = document.getElementById('emailError');
+      const passwordError = document.getElementById('passwordError');
+      
+      let isValid = true;
+      emailError.classList.remove('show');
+      passwordError.classList.remove('show');
+
+      if (email === '') {
+        emailError.textContent = 'The Email field is required.';
+        emailError.classList.add('show');
+        isValid = false;
+      } else if (!email.endsWith('@polytechnic.am')) {
+        emailError.textContent = 'Please enter a valid university email (e.g., example@polytechnic.am).';
+        emailError.classList.add('show');
+        isValid = false;
+      }
+
+      if (password === '') {
+        passwordError.classList.add('show');
+        isValid = false;
+      }
+
+      if (isValid) {
+        window.location.href = 'login_eng.html';
+      }
+    });
+  </script>
 </body>
 </html>

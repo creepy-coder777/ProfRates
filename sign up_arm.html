@@ -159,6 +159,18 @@
       font-weight: 600;
     }
 
+    .error-message {
+      color: #e74c3c;
+      font-size: 12px;
+      margin-top: 4px;
+      margin-bottom: 10px;
+      display: none;
+    }
+
+    .error-message.show {
+      display: block;
+    }
+
     @media (max-width: 768px) {
       html, body {
         overflow: auto;
@@ -213,20 +225,55 @@
 
         <div class="form">
           <div class="name">
-            <input type="text" placeholder="Անուն" class="fname" />
-            <input type="text" placeholder="Ազգանուն" class="lname" />
+            <input type="text" placeholder="Անուն" class="fname" id="fname" />
+            <input type="text" placeholder="Ազգանուն" class="lname" id="lname" />
           </div>
-          <input type="email" placeholder="Էլփոստ" class="mail" />
-          <input type="password" placeholder="Գաղտնաբառ" class="pass" />
-          <select class="menu">
+          <input type="email" placeholder="Էլփոստ" class="mail" id="email" />
+          <div class="error-message" id="emailError">Խնդրում ենք մուտքագրել համալսարանի ճիշտ էլ. փոստ (օր.` example@polytechnic.am)։</div>
+          <input type="password" placeholder="Գաղտնաբառ" class="pass" id="password" />
+          <div class="error-message" id="passwordError">Գաղտնաբառի դաշտը պարտադիր է:</div>
+          <select class="menu" id="menu">
             <option disabled selected>Ընտրեք ձեր ամբիոնը</option>
             <option>Քոմփյութերային համակարգեր և ցանցեր</option>
             <option>Տեղեկատվական անվտանգություն և ծրագրային ապահովում</option>
           </select>
-          <button class="submit" onclick="window.location.href='login_arm.html'">Գրանցվել</button>
+          <button class="submit" id="submitBtn">Գրանցվել</button>
         </div>
       </div>
     </div>
   </div>
+
+  <script>
+    document.getElementById('submitBtn').addEventListener('click', function() {
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value.trim();
+      const emailError = document.getElementById('emailError');
+      const passwordError = document.getElementById('passwordError');
+      
+      let isValid = true;
+
+      emailError.classList.remove('show');
+      passwordError.classList.remove('show');
+
+      if (email === '') {
+        emailError.textContent = 'Էլփոստի դաշտը պարտադիր է:';
+        emailError.classList.add('show');
+        isValid = false;
+      } else if (!email.endsWith('@polytechnic.am')) {
+        emailError.textContent = 'Խնդրում ենք մուտքագրել համալսարանի ճիշտ էլ. փոստ (օր.` example@polytechnic.am)։';
+        emailError.classList.add('show');
+        isValid = false;
+      }
+
+      if (password === '') {
+        passwordError.classList.add('show');
+        isValid = false;
+      }
+
+      if (isValid) {
+        window.location.href = 'login_arm.html';
+      }
+    });
+  </script>
 </body>
 </html>
