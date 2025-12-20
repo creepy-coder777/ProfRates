@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ProfRates - Computer Science and Network</title>
+    <title>ProfRates - Top Professors</title>
     <style>
         * {
             margin: 0;
@@ -98,6 +97,7 @@
             border-radius: 8px;
             font-weight: 600;
             font-size: 17px;
+            text-decoration: none;
         }
 
         .logout-wrapper {
@@ -111,17 +111,20 @@
             font-size: 18px;
             font-weight: 500;
             cursor: pointer;
+            color: white;
+            text-decoration: none;
         }
 
         /* Main Content */
         main {
-        max-width: 1300px;
-        margin: 0 auto;
-        padding: 50px 40px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 50px 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
+
         h1 {
             font-size: 42px;
             font-weight: 700;
@@ -172,123 +175,101 @@
             background-position: left 10px center; 
         }
 
-
         /* Professors Grid */
-        .professors-grid {
+        .prof-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 28px;
-            margin-bottom: 50px;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 26px;
             max-width: 1050px;
+            margin-bottom: 50px;
         }
 
-        .professor-card {
-            background: rgba(255, 255, 255, 0.7);
+        .prof-card {
+            background: rgba(255,255,255,0.7);
             backdrop-filter: blur(10px);
-            border-radius: 25px;
-            padding: 35px;
+            border-radius: 18px;
+            padding: 28px 22px;
+            box-shadow: 0 8px 30px rgba(75, 40, 140, 0.06);
             display: flex;
-            gap: 30px;
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.06);
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .professor-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
-        }
-
-        .professor-image {
-            width: 125px;
-            height: 125px;
-            border-radius: 50%;
-            object-fit: cover;
-            flex-shrink: 0;
-        }
-
-        .professor-image:hover {
-            cursor: pointer;
-        }
-        .professor-info {
-            flex: 1;
-        }
-
-        .professor-name {
-            font-size: 25px;
-            font-weight: 700;
-            color: #1a1a1a;
-            margin-bottom: 6px;
-        }
-
-        .rating {
-            display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 3px;
-            margin-bottom: 10px;
-        }
-
-        .star {
-            color: #fbbf24;
-            font-size: 21px;
-        }
-
-        .rating-number {
-            font-size: 20px;
-            font-weight: 600;
-            color: #1a1a1a;
-            margin-left: 4px;
-        }
-
-        .professor-department {
-            font-size: 17px;
-            font-weight: 600;
-            color: #1a1a1a;
-            margin-bottom: 7px;
-        }
-
-        .professor-description {
-            font-size: 14px;
-            color: #666;
-            line-height: 1.5;
-        }
-
-        /* View Top Professors Button */
-        .view-top-container {
             text-align: center;
-            margin-top: 30px;
+            min-height: 360px;
         }
 
-        .view-top-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            background: white;
-            color: #6b46c1;
-            padding: 16px 35px;
-            border-radius: 50px;
-            font-size: 19px;
-            font-weight: 700;
-            text-decoration: none;
-            box-shadow: 0 3px 15px rgba(107, 70, 193, 0.15);
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .view-top-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(107, 70, 193, 0.25);
-        }
-
-        .plus-icon {
-            width: 28px;
-            height: 28px;
-            background: #6b46c1;
+        .avatar {
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
+            overflow: hidden;
+            margin-bottom: 18px;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+            flex: 0 0 auto;
+        }
+
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .prof-name {
+            font-size: 20px;
+            font-weight: 700;
+            color: #231a2f;
+            margin-bottom: 8px;
+        }
+
+        .rating-row {
             display: flex;
             align-items: center;
             justify-content: center;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+
+        .stars {
+            color: #f2b705;
+            font-size: 18px;
+            letter-spacing: 2px;
+        }
+
+        .rating-num {
+            font-weight: 700;
+            color: #201a2a;
+        }
+
+        .department {
+            color: #6a4e8a;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .prof-bio {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 16px;
+            flex: 1 1 auto;
+        }
+
+        .card-actions {
+            margin-top: 10px;
+        }
+
+        .rate-btn {
+            background: linear-gradient(135deg, #6b46c1 0%, #7c3aed 100%);
             color: white;
-            font-size: 24px;
-            font-weight: 400;
+            padding: 10px 18px;
+            border-radius: 12px;
+            border: none;
+            cursor: pointer;
+            font-weight: 700;
+        }
+        .rate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(107, 70, 193, 0.3);
         }
 
         /* Footer */
@@ -301,6 +282,27 @@
             font-weight: 500;
             margin-top: 40px;
         }
+
+        /* Responsive tweaks */
+        @media (max-width: 760px) {
+            h1 {
+                font-size: 28px;
+            }
+            
+            .header-content {
+                padding: 0 18px;
+            }
+            
+            .logo img {
+                width: 34px;
+                height: 34px;
+            }
+            
+            .avatar {
+                width: 110px;
+                height: 110px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -311,16 +313,16 @@
                 <span>ProfRates</span>
             </div>
             <div class="center-nav">
-                <a href="#" class="nav-link"><span class="icon"></span> Home</a>
+                <a href="home_eng.html" class="nav-link"><span class="icon"></span> Home</a>
                 <a href="about.html" class="nav-link"><span class="icon"></span> About</a>
                 <a href="privacy_eng.html" class="nav-link"><span class="icon"></span> Privacy</a>
-                <a href="home_arm.html" class="nav-link">
+                <a href="top_arm.html" class="nav-link">
                     <img src="white-logo.png" alt="Globe" class="globe-icon">
                     Arm
                 </a>
             </div>
             <div class="right-nav">
-                <a href="#" class="nav-link my-rates-btn" onclick="window.location.href='ratings_eng.html'">My ratings</a>
+                <a href="ratings_eng.html" class="nav-link my-rates-btn">My ratings</a>
                 <div class="logout-wrapper">
                     <a href="login_eng.html" class="nav-link logout-btn">Logout</a>
                 </div>
@@ -329,7 +331,7 @@
     </header>
 
     <main>
-        <h1>Computer systems and networks</h1>
+        <h1>Top Professors</h1>
 
         <div class="filters">
             <div class="filter-group">
@@ -342,7 +344,7 @@
             <div class="filter-group">
                 <select class="filter-select">
                     <option>Order professors by</option>
-                     <option>Highest rated</option>
+                    <option>Highest rated</option>
                     <option>Lowest rated</option>
                     <option>Name (A-Z)</option> 
                     <option>Name (Z-A)</option> 
@@ -353,94 +355,56 @@
             </div>
         </div>
 
-        <div class="professors-grid">
+        <div class="prof-grid" aria-label="Top professors list">
             <!-- Professor 1 -->
-            <div class="professor-card">
-                <img src="Ann_Johnson.jpg" alt="Ann Johnson" class="professor-image" data-link="prof_eng.html">
-                <div class="professor-info">
-                    <h2 class="professor-name">Ann Johnson</h2>
-                    <div class="rating">
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="rating-number">4.5</span>
-                    </div>
-                    <div class="professor-department">Computer Science</div>
-                    <p class="professor-description">Expert in software engineering and computer systems.</p>
+            <div class="prof-card" data-id="ann_johnson">
+                <div class="avatar"><img src="Ann_Johnson.jpg" alt="Ann Johnson"></div>
+                <div class="prof-name">Ann Johnson</div>
+                <div class="rating-row">
+                    <div class="stars">★★★★★</div>
+                    <div class="rating-num">4.5</div>
+                </div>
+                <div class="department">Computer Science</div>
+                <div class="prof-bio">Expert in software engineering and computer systems.</div>
+                <div class="card-actions">
+                    <button class="rate-btn" onclick="window.location.href='prof_eng.html'">Rate</button>
                 </div>
             </div>
 
             <!-- Professor 2 -->
-            <div class="professor-card">
-                <img src="Tom_Miller.jpg" alt="Tom Miller" class="professor-image">
-                <div class="professor-info">
-                    <h2 class="professor-name">Tom Miller</h2>
-                    <div class="rating">
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="rating-number">4.7</span>
-                    </div>
-                    <div class="professor-department">Civil Engineering</div>
-                    <p class="professor-description">Expert in structural design, construction methods, and civil infrastructure systems.</p>
+            <div class="prof-card" data-id="tom_miller">
+                <div class="avatar"><img src="Tom_Miller.jpg" alt="Tom Miller"></div>
+                <div class="prof-name">Tom Miller</div>
+                <div class="rating-row">
+                    <div class="stars">★★★★★</div>
+                    <div class="rating-num">4.7</div>
+                </div>
+                <div class="department">Civil Engineering</div>
+                <div class="prof-bio">Expert in structural design, construction methods, and civil infrastructure systems.</div>
+                <div class="card-actions">
+                    <button class="rate-btn" data-prof-id="tom_miller">Rate</button>
                 </div>
             </div>
 
             <!-- Professor 3 -->
-            <div class="professor-card">
-                <img src="David_Collins.jpg" alt="David Collins" class="professor-image">
-                <div class="professor-info">
-                    <h2 class="professor-name">David Collins</h2>
-                    <div class="rating">
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="rating-number">3.6</span>
-                    </div>
-                    <div class="professor-department">Machine Learning</div>
-                    <p class="professor-description">Expert in intelligent algorithms, predictive modeling, and data-driven system optimization.</p>
+            <div class="prof-card" data-id="joyce_parker">
+                <div class="avatar"><img src="Joyce_Parker.jpg" alt="Joyce Parker"></div>
+                <div class="prof-name">Joyce Parker</div>
+                <div class="rating-row">
+                    <div class="stars">★★★★★</div>
+                    <div class="rating-num">4.0</div>
+                </div>
+                <div class="department">OOP Engineer</div>
+                <div class="prof-bio">Expert in object-oriented design, modular architecture, and scalable software development.</div>
+                <div class="card-actions">
+                    <button class="rate-btn" data-prof-id="joyce_parker">Rate</button>
                 </div>
             </div>
-
-            <!-- Professor 4 -->
-            <div class="professor-card">
-                <img src="Joyce_Parker.jpg" alt="Joyce Parker" class="professor-image">
-                <div class="professor-info">
-                    <h2 class="professor-name">Joyce Parker</h2>
-                    <div class="rating">
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="rating-number">4.0</span>
-                    </div>
-                    <div class="professor-department">OOP Engineer</div>
-                    <p class="professor-description">Expert in object-oriented design, modular architecture, and scalable software development.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="view-top-container">
-            <a href="top_eng.html" class="view-top-btn">
-                <span class="plus-icon">+</span>
-                View Top Professors
-            </a>
         </div>
     </main>
 
     <footer>
         © 2025 ProfRates All Rights Reserved
     </footer>
-
-    <script>
-        document.querySelectorAll('.professor-image').forEach(img => {
-        img.addEventListener('click', () => {
-            window.location.href = img.dataset.link;
-            });
-        });
-    </script>
 </body>
 </html>

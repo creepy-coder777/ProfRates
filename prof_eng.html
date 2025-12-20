@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProfRates - Ann Johnson</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background-image: url('background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #6b46c1 0%, #7c3aed 100%);
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 3px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: white;
+            font-size: 26px;
+            font-weight: 700;
+        }
+
+        .logo img {
+            width: 40px;
+            height: 40px;
+        }
+
+        .center-nav {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: opacity 0.2s;
+        }
+
+        .nav-link:hover {
+            opacity: 0.85;
+        }
+
+        .icon {
+            font-size: 20px;
+        }
+
+        .globe-icon {
+            width: 22px;
+            height: 22px;
+        }
+
+        .right-nav {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            position: relative;
+        }
+
+        .my-rates-btn {
+            background: white;
+            color: #6b46c1;
+            padding: 10px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 17px;
+        }
+
+        .logout-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logout-btn {
+            font-size: 18px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 70px 40px;
+        }
+
+        /* Content Layout */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 380px 1fr;
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        /* Professor Card */
+        .professor-card {
+            background: white;
+            border-radius: 20px;
+            padding: 35px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            height: fit-content;
+        }
+
+        .professor-image {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+
+        .professor-name {
+            font-size: 26px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+        }
+
+        .professor-department {
+            font-size: 17px;
+            font-weight: 600;
+            color: #4a3175;
+            margin-bottom: 12px;
+        }
+
+        .professor-bio {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .rating-display {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .star-large {
+            color: #fbbf24;
+            font-size: 24px;
+        }
+
+        .rating-text {
+            font-size: 22px;
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+
+        .reviews-count {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .rate-btn {
+            background: linear-gradient(135deg, #6b46c1 0%, #7c3aed 100%);
+            color: white;
+            padding: 12px 40px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .rate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(107, 70, 193, 0.3);
+        }
+
+        /* Rating Distribution */
+        .rating-distribution {
+            background: white;
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .distribution-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+        }
+
+        .rating-row {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 18px;
+        }
+
+        .rating-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            width: 60px;
+            font-size: 18px;
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+
+        .star {
+            color: #fbbf24;
+            font-size: 20px;
+        }
+
+        .rating-bar-container {
+            flex: 1;
+            height: 28px;
+            background: #e5e0f3;
+            border-radius: 14px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .rating-bar {
+            height: 100%;
+            background: linear-gradient(135deg, #6b46c1 0%, #7c3aed 100%);
+            border-radius: 14px;
+            transition: width 0.3s ease;
+        }
+
+        .rating-percentage {
+            width: 60px;
+            text-align: right;
+            font-size: 16px;
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+
+        /* Students Opinion Section */
+        .students-opinion {
+            margin-top: 50px;
+        }
+
+        .opinion-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+        }
+
+        .review-card {
+            background: white;
+            border-radius: 16px;
+            padding: 25px 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+        }
+
+        .review-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .reviewer-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #6b46c1 0%, #7c3aed 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+        }
+
+        .reviewer-avatar img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .review-date {
+            font-size: 15px;
+            font-weight: 500;
+            color: #666;
+        }
+
+        .review-text {
+            font-size: 15px;
+            color: #1a1a1a;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .review-actions {
+            display: flex;
+            gap: 15px;
+        }
+
+        .action-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            transition: transform 0.2s;
+        }
+
+        .action-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .like-btn {
+            color: #6b46c1;
+        }
+
+        .dislike-btn {
+            color: #999;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #6b46c1 0%, #7c3aed 100%);
+            padding: 25px 0;
+            text-align: center;
+            color: white;
+            font-size: 16px;
+            font-weight: 500;
+            margin-top: 60px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <img src="logo.png" alt="ProfRates Logo">
+                <span>ProfRates</span>
+            </div>
+            <div class="center-nav">
+                <a href="home_eng.html" class="nav-link"><span class="icon"></span> Home</a>
+                <a href="about.html" class="nav-link"><span class="icon"></span> About</a>
+                <a href="privacy_eng.html" class="nav-link"><span class="icon"></span> Privacy</a>
+                <a href="prof_arm.html" class="nav-link">
+                    <img src="white-logo.png" alt="Globe" class="globe-icon">
+                    Arm
+                </a>
+            </div>
+            <div class="right-nav">
+                <a href="ratings_eng.html" class="nav-link my-rates-btn">My ratings</a>
+                <div class="logout-wrapper">
+                    <a href="login_eng.html" class="nav-link logout-btn">Logout</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="content-grid">
+            <!-- Professor Card -->
+            <div class="professor-card">
+                <img src="Ann_Johnson.jpg" alt="Ann Johnson" class="professor-image">
+                <h1 class="professor-name">Ann Johnson</h1>
+                <div class="professor-department">Computer Science</div>
+                <p class="professor-bio">Expert in software engineering and computer systems.</p>
+                <div class="rating-display">
+                    <span class="star-large">★</span>
+                    <span class="rating-text">4.5/5.0</span>
+                </div>
+                <div class="reviews-count">(168 reviews)</div>
+                <button class="rate-btn" onclick="window.location.href='rate_eng.html'">Rate Now</button>
+            </div>
+
+            <!-- Rating Distribution -->
+            <div class="rating-distribution">
+                <h2 class="distribution-title">Rating Distribution</h2>
+                
+                <div class="rating-row">
+                    <div class="rating-label">
+                        <span>5</span>
+                        <span class="star">★</span>
+                    </div>
+                    <div class="rating-bar-container">
+                        <div class="rating-bar" style="width: 60%;"></div>
+                    </div>
+                    <div class="rating-percentage">60%</div>
+                </div>
+
+                <div class="rating-row">
+                    <div class="rating-label">
+                        <span>4</span>
+                        <span class="star">★</span>
+                    </div>
+                    <div class="rating-bar-container">
+                        <div class="rating-bar" style="width: 20%;"></div>
+                    </div>
+                    <div class="rating-percentage">20%</div>
+                </div>
+
+                <div class="rating-row">
+                    <div class="rating-label">
+                        <span>3</span>
+                        <span class="star">★</span>
+                    </div>
+                    <div class="rating-bar-container">
+                        <div class="rating-bar" style="width: 10%;"></div>
+                    </div>
+                    <div class="rating-percentage">10%</div>
+                </div>
+
+                <div class="rating-row">
+                    <div class="rating-label">
+                        <span>2</span>
+                        <span class="star">★</span>
+                    </div>
+                    <div class="rating-bar-container">
+                        <div class="rating-bar" style="width: 10%;"></div>
+                    </div>
+                    <div class="rating-percentage">10%</div>
+                </div>
+
+                <div class="rating-row">
+                    <div class="rating-label">
+                        <span>1</span>
+                        <span class="star">★</span>
+                    </div>
+                    <div class="rating-bar-container">
+                        <div class="rating-bar" style="width: 0%;"></div>
+                    </div>
+                    <div class="rating-percentage">0%</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Students' Opinion -->
+        <div class="students-opinion">
+            <h2 class="opinion-title">Students' opinion</h2>
+
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="reviewer-avatar">
+                        <img src="ava.png" alt="Anonymous Reviewer">
+                    </div>
+                    <span class="review-date">Sep 1st, 2025</span>
+                </div>
+                <p class="review-text">Ann Johnson breaks down complex software engineering topics into digestible steps. Her lectures are well-paced, and she's always available during office hours. I felt genuinely prepared for every exam thanks to her guidance.</p>
+                <div class="review-actions">
+                    <button class="action-btn like-btn">👍</button>
+                    <button class="action-btn dislike-btn">👎</button>
+                </div>
+            </div>
+
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="reviewer-avatar">
+                        <img src="ava.png" alt="Anonymous Reviewer">
+                    </div>
+                    <span class="review-date">Oct 14th, 2024</span>
+                </div>
+                <p class="review-text">She combines deep technical knowledge with a passion for teaching. Her assignments are challenging but fair, and she gives detailed feedback that actually helps you improve. Highly recommend her for anyone serious about computer science.</p>
+                <div class="review-actions">
+                    <button class="action-btn like-btn">👍</button>
+                    <button class="action-btn dislike-btn">👎</button>
+                </div>
+            </div>
+
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="reviewer-avatar">
+                        <img src="ava.png" alt="Anonymous Reviewer">
+                    </div>
+                    <span class="review-date">Mar 20th, 2025</span>
+                </div>
+                <p class="review-text">Professor Johnson doesn't just teach—she mentors. Her explanations of computer systems were crystal clear, and she often shared real-world examples that made the material come alive. I'd take another course with her in a heartbeat!</p>
+                <div class="review-actions">
+                    <button class="action-btn like-btn">👍</button>
+                    <button class="action-btn dislike-btn">👎</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        © 2025 ProfRates All Rights Reserved
+    </footer>
+</body>
+</html>

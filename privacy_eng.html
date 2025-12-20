@@ -15,78 +15,95 @@
       line-height: 1.6;
     }
 
-    header { 
-      /*background-color: #4b2ea7;*/
-      background: linear-gradient(135deg, #6b46c1 0%, #7c3aed 100%);
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 15px 40px;
+    header {
+            background: linear-gradient(135deg, #6b46c1 0%, #7c3aed 100%);
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 3px;
     }
 
     .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 700;
-      font-size: 22px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: white;
+            font-size: 26px;
+            font-weight: 700;
     }
 
     .logo img {
-      height: 50px;
-      width: auto;
-      object-fit: contain;
-      border-radius: 5px;
+            width: 40px;
+            height: 40px;
     }
 
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 15px;
+    .center-nav {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
     }
 
-    .nav-actions button {
-      background-color: #fff;
-      color: #4b2ea7;
-      border: none;
-      border-radius: 10px;
-      padding: 10px 28px;
-      font-weight: 600;
-      font-size: 16px;
-      cursor: pointer;
-      transition: 0.2s ease;
+    .nav-link {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: opacity 0.2s;
     }
 
-    .nav-actions button:hover {
-      opacity: 0.85;
+    .nav-link:hover {
+            opacity: 0.85;
     }
 
-    .nav-actions a {
-      color: white;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 18px;
+    .icon {
+            font-size: 20px;
     }
 
-    .language-inline {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      color: white;
-      font-weight: 600;
+    .globe-icon {
+            width: 22px;
+            height: 22px;
     }
 
-    .language-inline img {
-      height: 20px;
-      width: 20px;
-      object-fit: contain;
-      vertical-align: middle;
+    .right-nav {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            position: relative;
     }
 
-    .language-inline span:hover {
-      opacity: 0.85;
-      cursor: pointer;
+    .my-rates-btn {
+            background: white;
+            color: #6b46c1;
+            padding: 10px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 17px;
+    }
+
+    .logout-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+    }
+
+    .logout-btn {
+            font-size: 18px;
+            font-weight: 500;
+            cursor: pointer;
     }
 
     main {
@@ -171,17 +188,6 @@
       margin-top: 40px;
     }
 
-    footer a {
-      color: white;
-      text-decoration: none;
-      margin: 0 10px;
-      font-weight: 600;
-    }
-
-    footer a:hover {
-      text-decoration: underline;
-    }
-
     footer p {
       margin-top: 8px;
       font-size: 14px;
@@ -212,20 +218,28 @@
 
 <body>
   <header>
-    <div class="logo">
-      <img src="logo.png" alt="ProfRates logo" />
-      ProfRates
-    </div>
-
-    <div class="nav-actions">
-      <button>My rates</button>
-      <div class="language-inline">
-        <img src="white-logo.png" alt="Language icon" />
-        <a href="privacy_arm.html">Arm</a>
-      </div>
-      <a href="login_eng.html">Logout</a>
-    </div>
-  </header>
+        <div class="header-content">
+            <div class="logo">
+                <img src="logo.png" alt="ProfRates Logo">
+                <span>ProfRates</span>
+            </div>
+            <div class="center-nav">
+                <a href="home_eng.html" class="nav-link"><span class="icon"></span> Home</a>
+                <a href="about.html" class="nav-link"><span class="icon"></span> About</a>
+                <a href="#" class="nav-link"><span class="icon"></span> Privacy</a>
+                <a href="privacy_arm.html" class="nav-link">
+                    <img src="white-logo.png" alt="Globe" class="globe-icon">
+                    Arm
+                </a>
+            </div>
+            <div class="right-nav">
+                <a href="ratings_eng.html" class="nav-link my-rates-btn">My ratings</a>
+                <div class="logout-wrapper">
+                    <a href="login_eng.html" class="nav-link logout-btn">Logout</a>
+                </div>
+            </div>
+        </div>
+    </header>
 
   <main>
     <h1>Privacy Policy</h1>
@@ -303,15 +317,10 @@
 
     <h2 id="contact">11. Contact Information</h2>
     <p>If you have questions, concerns, or requests regarding this Privacy Policy, please contact:</p>
-    <p><strong>ProfRate Privacy Team</strong><br>Email: <a href="mailto:privacy@profrate.app">privacy@profrate.app</a></p>
+    <p><strong>ProfRate Privacy Team</strong><br>Email: <a href="mailto:admin@profrates.am">admin@profrates.am</a></p>
   </main>
 
   <footer>
-    <div>
-      <a href="home_eng.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="#">Privacy</a>
-    </div>
     <p>© 2025 ProfRates All Rights Reserved</p>
   </footer>
 </body>

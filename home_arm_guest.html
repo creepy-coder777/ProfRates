@@ -44,11 +44,6 @@
         .nav-link:hover { opacity: 0.85; }
         .globe-icon { width: 22px; height: 22px; }
         .right-nav { display: flex; gap: 30px; align-items: center; position: relative; }
-        .my-rates-btn {
-            background: white; color: #6b46c1;
-            padding: 10px 28px; border-radius: 8px;
-            font-weight: 600; font-size: 17px;
-        }
         .login-wrapper {
             position: relative;
             display: flex;
@@ -80,21 +75,23 @@
         .filter-group { 
           flex: 1; 
         }
-        .filter-select, .search-input {
-            width: 100%; 
-            padding: 12px 18px;
+        .filter-select,
+        .search-input {
+            width: 100%;
+            padding: 12px 18px; 
             border: 2px solid #e5e5e5;
             border-radius: 10px;
-            font-size: 15px; 
+            font-size: 15px;
             color: #666;
             background: rgba(255,255,255,0.7);
             backdrop-filter: blur(10px);
         }
-        .search-input { 
-          padding-left: 42px; 
-          background-image: url("data:image/svg+xml,%3Csvg width='18' height='18' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M9 17A8 8 0 1 0 9 1a8 8 0 0 0 0 16zM18 18l-4-4' stroke='%23666' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E"); 
-          background-repeat: no-repeat; 
-          background-position: left 14px center; 
+
+        .search-input {
+            padding-left: 32px; 
+            background-image: url("data:image/svg+xml,%3Csvg width='14' height='14' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M9 17A8 8 0 1 0 9 1a8 8 0 0 0 0 16zM18 18l-4-4' stroke='%23666' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: left 10px center; 
         }
         .professors-grid {
             display: grid; grid-template-columns: repeat(2,1fr);
@@ -113,6 +110,9 @@
         .professor-image {
             width: 125px; height: 125px;
             border-radius: 50%; object-fit: cover;
+        }
+        .professor-image:hover{
+            cursor: pointer;
         }
         .professor-name { font-size: 25px; font-weight: 700; margin-bottom: 6px; }
         .rating { display: flex; gap: 3px; margin-bottom: 10px; align-items:center; }
@@ -164,23 +164,29 @@
         <div class="filter-group">
             <select class="filter-select">
                 <option>Ֆիլտրել ըստ ամբիոնի</option>
+                <option>Քոմփյութերային համակարգեր և ցանցեր</option>
+                <option>Տեղեկատվության անվտանգության և ծրագրային ապահովում</option>
             </select>
         </div>
         <div class="filter-group">
             <select class="filter-select">
-                <option>Ֆիլտրել ըստ ռեյթինգի</option>
+                <option>Դասավորել դասախոսներին ըստ</option>
+                <option>Ամենաբարձր գնահատված</option>
+                <option>Ամենացածր գնահատված</option>
+                <option>Անուն (Ա-Ֆ)</option>
+                <option>Անուն (Ֆ-Ա)</option>
             </select>
         </div>
         <div class="filter-group">
-            <input type="text" class="search-input" placeholder="Փնտրել ըստ դասախոսի անվան">
+            <input type="text" class="search-input" placeholder="Փնտրել ըստ դասախոսի">
         </div>
     </div>
 
     <div class="professors-grid">
         <div class="professor-card">
-            <img src="Ann_Johnson.jpg" class="professor-image" alt="Ann Johnson">
+            <img src="Ann_Johnson.jpg" class="professor-image" alt="Ann Johnson" data-link="prof_arm_guest.html">
             <div class="professor-info">
-                <h2 class="professor-name">Ann Johnson</h2>
+                <h2 class="professor-name">Աննա Ջոնսոն</h2>
                 <div class="rating"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="rating-number">4.5</span></div>
                 <div class="professor-department">Computer Science</div>
                 <p class="professor-description">Գործնական փորձառություն ծրագրային ճարտարագիտությունում և համակարգչային համակարգերում</p>
@@ -190,7 +196,7 @@
         <div class="professor-card">
             <img src="Tom_Miller.jpg" class="professor-image" alt="Tom Miller">
             <div class="professor-info">
-                <h2 class="professor-name">Tom Miller</h2>
+                <h2 class="professor-name">Թոմ Միլլեր</h2>
                 <div class="rating"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="rating-number">4.7</span></div>
                 <div class="professor-department">Civil Engineering</div>
                 <p class="professor-description">Մասնագետ կառուցվածքային ձևավորման,շինարարական մեթոդների և քաղաքացիական ենթակառուցվածային համակարգերի մեջ։</p>
@@ -200,7 +206,7 @@
         <div class="professor-card">
             <img src="David_Collins.jpg" class="professor-image" alt="David Collins">
             <div class="professor-info">
-                <h2 class="professor-name">David Collins</h2>
+                <h2 class="professor-name">Դավիթ Կոլլինս</h2>
                 <div class="rating"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="rating-number">3.6</span></div>
                 <div class="professor-department">Machine Learning</div>
                 <p class="professor-description"> Մասնագետ խելացի ալգորիթմների, կանխատեսող մոդելավորման և տվյալների վրա հիմնված համակարգերի հաշվարկման և օպտիմալացման ոլորտում։</p>
@@ -210,7 +216,7 @@
         <div class="professor-card">
             <img src="Joyce_Parker.jpg" class="professor-image" alt="Joyce Parker">
             <div class="professor-info">
-                <h2 class="professor-name">Joyce Parker</h2>
+                <h2 class="professor-name">Ջոյս Պարկեր</h2>
                 <div class="rating"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="rating-number">4.0</span></div>
                 <div class="professor-department">OOP Engineer</div>
                 <p class="professor-description">Մասնագետ մոդուլային ճարտարապետության և մասշտաբավորող ծրագրային ապահովման մշակման ոլորտում։</p>
@@ -219,7 +225,7 @@
     </div>
 
     <div class="view-top-container">
-        <a href="#" class="view-top-btn">
+        <a href="top_arm_guest.html" class="view-top-btn">
             <span class="plus-icon">+</span>
             Ցույց տալ թոփ դասախոսներին
         </a>
@@ -229,21 +235,11 @@
 <footer>© 2025 ProfRates Բոլոր իրավունքները պահպանված են</footer>
 
 <script>
-    const dropdownToggle = document.getElementById('dropdownToggle');
-    const dropdownMenu = document.getElementById('dropdownMenu');
-
-    dropdownToggle.addEventListener('click', function(e) {
-        e.stopPropagation();
-        dropdownMenu.classList.toggle('show');
-        dropdownToggle.classList.toggle('open');
-    });
-
-    // Close dropdown when clicking outside
-    document.addEventListener('click', function(e) {
-        if (!dropdownMenu.contains(e.target) && e.target !== dropdownToggle) {
-            dropdownMenu.classList.remove('show');
-            dropdownToggle.classList.remove('open');
-        }
+    document.querySelectorAll('.professor-image').forEach(img => {
+        img.addEventListener('click', () => {
+            const target = img.dataset.link || img.getAttribute('data-link');
+            if (target) window.location.href = target;
+        });
     });
 </script>
 

@@ -1,11 +1,11 @@
 const scales = document.querySelectorAll('.scale');
         const ratings = {};
         const labels = [
-            'Բոլորովին համաձայն չեմ',
-            'Համաձայն չեմ',
-            'Մասամբ համաձայն եմ',
-            'Համաձայն եմ',
-            'Լիովին համաձայն եմ'
+            'Strongly Disagree',
+            'Disagree',
+            'Neither agree nor Disagree',
+            'Agree',
+            'Strongly Agree'
         ];
 
         scales.forEach((scale, index) => {
@@ -49,28 +49,16 @@ const scales = document.querySelectorAll('.scale');
             const answeredQuestions = Object.keys(ratings).length;
 
             if (answeredQuestions < totalQuestions) {
-                alert(`Խնդրում ենք պատասխանել բոլոր ${totalQuestions} հարցերին հաստատելուց առաջ։`);
+                alert(`Please answer all ${totalQuestions} questions before submitting.`);
                 return;
             }
 
+            if (review.trim().length === 0) {
+                alert('Please write a review before submitting.');
+                return;
+            }
 
-            alert('Շնորհակալություն գնահատելու համար! Ձեր գնահատականը հաստատվել է։');
+            alert('Thank you for your rating! Your review has been submitted.');
             console.log('Ratings:', ratings);
             console.log('Review:', review);
         }
-
-        const dropdownToggle = document.getElementById('dropdownToggle');
-        const dropdownMenu = document.getElementById('dropdownMenu');
-
-        dropdownToggle.addEventListener('click', function(e) {
-            e.stopPropagation();
-            dropdownMenu.classList.toggle('show');
-            dropdownToggle.classList.toggle('open');
-        });
-
-        document.addEventListener('click', function(e) {
-            if (!dropdownMenu.contains(e.target) && e.target !== dropdownToggle) {
-                dropdownMenu.classList.remove('show');
-                dropdownToggle.classList.remove('open');
-            }
-        });
