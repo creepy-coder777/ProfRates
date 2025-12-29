@@ -37,27 +37,31 @@
             left: 50%; transform: translateX(-50%);
         }
         .nav-link {
-            color: white; text-decoration: none; font-size: 18px; font-weight: 500;
-            display: flex; align-items: center; gap: 8px;
-            transition: opacity 0.2s;
-        }
-        .nav-link:hover { opacity: 0.85; }
-        .globe-icon { width: 22px; height: 22px; }
-        .right-nav { display: flex; gap: 30px; align-items: center; position: relative; }
-        .login-wrapper {
-            position: relative;
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
             display: flex;
             align-items: center;
             gap: 8px;
-            background: white;
-            padding: 10px 28px;
+            padding: 8px 16px;
             border-radius: 8px;
+            transition: all 0.3s ease;
         }
+
+        .nav-link:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+        .globe-icon { width: 22px; height: 22px; }
+        .right-nav { display: flex; gap: 30px; align-items: center; position: relative; }
         .login-btn {
             font-size: 18px;
             font-weight: 500;
             cursor: pointer;
             color: #6b46c1;
+            background: white;
+            padding: 10px 28px; 
+            border-radius: 8px;
         }
         main {
             max-width: 1300px; margin: 0 auto;
@@ -75,20 +79,31 @@
         .filter-group { 
           flex: 1; 
         }
-        .filter-select,
-        .search-input {
+        .filter-select {
             width: 100%;
-            padding: 12px 18px; 
+            padding: 12px 18px;
             border: 2px solid #e5e5e5;
             border-radius: 10px;
             font-size: 15px;
             color: #666;
             background: rgba(255,255,255,0.7);
             backdrop-filter: blur(10px);
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%23666' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            padding-right: 45px;
         }
-
         .search-input {
-            padding-left: 32px; 
+            width: 100%;
+            padding: 12px 18px 12px 32px; 
+            border: 2px solid #e5e5e5;
+            border-radius: 10px;
+            font-size: 15px;
+            color: #666;
+            background: rgba(255,255,255,0.7);
+            backdrop-filter: blur(10px);
             background-image: url("data:image/svg+xml,%3Csvg width='14' height='14' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M9 17A8 8 0 1 0 9 1a8 8 0 0 0 0 16zM18 18l-4-4' stroke='%23666' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
             background-repeat: no-repeat;
             background-position: left 10px center; 
@@ -102,10 +117,14 @@
             backdrop-filter: blur(10px);
             border-radius: 25px; padding: 35px; display: flex;
             gap: 30px; box-shadow: 0 2px 15px rgba(0,0,0,0.06);
+            transition: transform 0.2s, box-shadow 0.2s;
         }
          .professor-card:hover {
             transform: translateY(-3px);
             box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+        }
+        .professor-card.hidden {
+            display: none;
         }
         .professor-image {
             width: 125px; height: 125px;
@@ -131,8 +150,41 @@
         .view-top-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 20px rgba(107,70,193,0.25); }
         .plus-icon { width: 28px; height: 28px; background: #6b46c1; border-radius: 50%; display:flex; align-items:center; justify-content:center; color:white; font-size:24px; font-weight:400; }
         footer {
-            background: linear-gradient(135deg,#6b46c1,#7c3aed);
-            padding: 25px 0; text-align: center; color: white;
+      /*background-color: #4b2ea7;*/
+        background: linear-gradient(135deg, #6b46c1 0%, #7c3aed 100%);
+        color: white;
+        text-align: center;
+         padding: 15px 0;
+        margin-top: 40px;
+        }
+
+        footer p {
+        margin-top: 10px;
+        font-size: 14px;
+        color: #fff;
+        }
+        
+        /* No Results Message */
+        .no-results {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 60px 20px;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            display: none;
+        }
+        .no-results.show {
+            display: block;
+        }
+        .no-results h3 {
+            font-size: 24px;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+        }
+        .no-results p {
+            font-size: 16px;
+            color: #666;
         }
     </style>
 </head>
@@ -150,9 +202,7 @@
             <a href="home_eng_guest.html" class="nav-link"><img src="white-logo.png" class="globe-icon" alt=""> Eng</a>
         </div>
         <div class="right-nav">
-            <div class="login-wrapper">
-                <a href="login_arm.html" class="nav-link login-btn">Մուտք</a>
-            </div>
+            <a href="login_arm.html" class="nav-link login-btn">Մուտք</a>
         </div>
     </div>
 </header>
@@ -162,28 +212,34 @@
 
     <div class="filters">
         <div class="filter-group">
-            <select class="filter-select">
-                <option>Ֆիլտրել ըստ ամբիոնի</option>
-                <option>Քոմփյութերային համակարգեր և ցանցեր</option>
-                <option>Տեղեկատվության անվտանգության և ծրագրային ապահովում</option>
+            <select class="filter-select" id="chairFilter">
+                <option value="all">Ֆիլտրել ըստ ամբիոնի</option>
+                <option value="Computer Science">Քոմփյութերային համակարգեր և ցանցեր</option>
+                <option value="Civil Engineering">Տեղեկատվության անվտանգության և ծրագրային ապահովում</option>
             </select>
         </div>
         <div class="filter-group">
-            <select class="filter-select">
-                <option>Դասավորել դասախոսներին ըստ</option>
-                <option>Ամենաբարձր գնահատված</option>
-                <option>Ամենացածր գնահատված</option>
-                <option>Անուն (Ա-Ֆ)</option>
-                <option>Անուն (Ֆ-Ա)</option>
+            <select class="filter-select" id="sortFilter">
+                <option value="">Դասավորել դասախոսներին ըստ</option>
+                <option value="highest">Ամենաբարձր գնահատված</option>
+                <option value="lowest">Ամենացածր գնահատված</option>
+                <option value="a-z">Անուն (Ա-Ֆ)</option>
+                <option value="z-a">Անուն (Ֆ-Ա)</option>
             </select>
         </div>
         <div class="filter-group">
-            <input type="text" class="search-input" placeholder="Փնտրել ըստ դասախոսի">
+            <input type="text" class="search-input" id="searchInput" placeholder="Փնտրել ըստ դասախոսի">
         </div>
     </div>
 
-    <div class="professors-grid">
-        <div class="professor-card">
+    <div class="professors-grid" id="professorsGrid">
+        <!-- No Results Message in Armenian -->
+        <div class="no-results" id="noResults">
+            <h3>Դասախոսներ չեն գտնվել</h3>
+            <p>Փորձեք փոխել ձեր որոնումը կամ ֆիլտրերը</p>
+        </div>
+
+        <div class="professor-card" data-rating="4.5" data-name="Աննա Ջոնսոն" data-department="Computer Science">
             <img src="Ann_Johnson.jpg" class="professor-image" alt="Ann Johnson" data-link="prof_arm_guest.html">
             <div class="professor-info">
                 <h2 class="professor-name">Աննա Ջոնսոն</h2>
@@ -193,7 +249,7 @@
             </div>
         </div>
 
-        <div class="professor-card">
+        <div class="professor-card" data-rating="4.7" data-name="Թոմ Միլլեր" data-department="Civil Engineering">
             <img src="Tom_Miller.jpg" class="professor-image" alt="Tom Miller">
             <div class="professor-info">
                 <h2 class="professor-name">Թոմ Միլլեր</h2>
@@ -203,7 +259,7 @@
             </div>
         </div>
 
-        <div class="professor-card">
+        <div class="professor-card" data-rating="3.6" data-name="Դավիթ Կոլլինս" data-department="Machine Learning">
             <img src="David_Collins.jpg" class="professor-image" alt="David Collins">
             <div class="professor-info">
                 <h2 class="professor-name">Դավիթ Կոլլինս</h2>
@@ -213,7 +269,7 @@
             </div>
         </div>
 
-        <div class="professor-card">
+        <div class="professor-card" data-rating="4.0" data-name="Ջոյս Պարկեր" data-department="OOP Engineer">
             <img src="Joyce_Parker.jpg" class="professor-image" alt="Joyce Parker">
             <div class="professor-info">
                 <h2 class="professor-name">Ջոյս Պարկեր</h2>
@@ -232,16 +288,78 @@
     </div>
 </main>
 
-<footer>© 2025 ProfRates Բոլոր իրավունքները պահպանված են</footer>
+<footer>
+    <p>© 2025 ProfRates Բոլոր իրավունքները պաշտպանված են</p>
+  </footer>
 
 <script>
+    const grid = document.getElementById('professorsGrid');
+    const cards = Array.from(document.querySelectorAll('.professor-card'));
+    const sortFilter = document.getElementById('sortFilter');
+    const chairFilter = document.getElementById('chairFilter');
+    const searchInput = document.getElementById('searchInput');
+    const noResults = document.getElementById('noResults');
+
+    // Click handler for professor images
     document.querySelectorAll('.professor-image').forEach(img => {
         img.addEventListener('click', () => {
             const target = img.dataset.link || img.getAttribute('data-link');
             if (target) window.location.href = target;
         });
     });
-</script>
 
+    // Apply all filters
+    function applyFilters() {
+        const sortValue = sortFilter.value;
+        const chairValue = chairFilter.value;
+        const searchValue = searchInput.value.toLowerCase().trim();
+
+        // Clone cards array for sorting
+        let filteredCards = [...cards];
+
+        // Filter by department
+        filteredCards = filteredCards.filter(card => {
+            const department = card.dataset.department;
+            const matchesDepartment = chairValue === 'all' || department === chairValue;
+            
+            // Filter by search
+            const name = card.dataset.name.toLowerCase();
+            const matchesSearch = searchValue === '' || name.includes(searchValue);
+            
+            return matchesDepartment && matchesSearch;
+        });
+
+        // Sort cards
+        if (sortValue === 'highest') {
+            filteredCards.sort((a, b) => parseFloat(b.dataset.rating) - parseFloat(a.dataset.rating));
+        } else if (sortValue === 'lowest') {
+            filteredCards.sort((a, b) => parseFloat(a.dataset.rating) - parseFloat(b.dataset.rating));
+        } else if (sortValue === 'a-z') {
+            filteredCards.sort((a, b) => a.dataset.name.localeCompare(b.dataset.name));
+        } else if (sortValue === 'z-a') {
+            filteredCards.sort((a, b) => b.dataset.name.localeCompare(a.dataset.name));
+        }
+
+        // Hide all cards first
+        cards.forEach(card => card.classList.add('hidden'));
+
+        // Check if there are results
+        if (filteredCards.length === 0) {
+            noResults.classList.add('show');
+        } else {
+            noResults.classList.remove('show');
+            // Show and reorder filtered cards
+            filteredCards.forEach(card => {
+                card.classList.remove('hidden');
+                grid.appendChild(card);
+            });
+        }
+    }
+
+    // Event listeners
+    sortFilter.addEventListener('change', applyFilters);
+    chairFilter.addEventListener('change', applyFilters);
+    searchInput.addEventListener('input', applyFilters);
+</script>
 </body>
 </html>

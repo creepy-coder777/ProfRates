@@ -56,16 +56,18 @@
         .nav-link {
             color: white;
             text-decoration: none;
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 500;
             display: flex;
             align-items: center;
             gap: 8px;
-            transition: opacity 0.2s;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
         }
 
         .nav-link:hover {
-            opacity: 0.85;
+            background: rgba(255, 255, 255, 0.15);
         }
 
         .icon {
@@ -84,22 +86,15 @@
             position: relative;
         }
         
-        .login-wrapper {
-            position: relative;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            background: white;
-            padding: 10px 28px;
-            border-radius: 8px;
-        }
-
         .login-btn {
             font-size: 18px;
             font-weight: 500;
             cursor: pointer;
             color: #6b46c1;
-        }        
+            background: white;
+            padding: 10px 28px; 
+            border-radius: 8px;
+        }      
 
     main {
       max-width: 900px;
@@ -186,9 +181,7 @@
                 </a>
             </div>
             <div class="right-nav">
-                <div class="login-wrapper">
-                    <a href="login_eng.html" class="nav-link login-btn">Login</a>
-                </div>
+                  <a href="login_eng.html" class="nav-link login-btn">Login</a>
             </div>
         </div>
     </header>

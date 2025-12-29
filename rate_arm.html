@@ -64,16 +64,18 @@
         .nav-link {
             color: white;
             text-decoration: none;
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 500;
             display: flex;
             align-items: center;
             gap: 8px;
-            transition: opacity 0.2s;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
         }
 
         .nav-link:hover {
-            opacity: 0.85;
+            background: rgba(255, 255, 255, 0.15);
         }
 
         .icon {
@@ -95,9 +97,9 @@
         .my-rates-btn {
             background: white;
             color: #6b46c1;
-            padding: 10px 28px;
+            padding: 10px 28px; 
             border-radius: 8px;
-            font-weight: 600;
+            font-weight: 600; 
             font-size: 17px;
         }
 
@@ -288,15 +290,19 @@
             transform: translateY(0);
         }
 
-        /* Footer */
         footer {
-            background: linear-gradient(135deg, #6b46c1 0%, #7c3aed 100%);
-            padding: 25px 0;
-            text-align: center;
-            color: white;
-            font-size: 16px;
-            font-weight: 500;
-            margin-top: 40px;
+      /*background-color: #4b2ea7;*/
+        background: linear-gradient(135deg, #6b46c1 0%, #7c3aed 100%);
+        color: white;
+        text-align: center;
+         padding: 15px 0;
+        margin-top: 40px;
+        }
+
+        footer p {
+        margin-top: 10px;
+        font-size: 14px;
+        color: #fff;
         }
     </style>
 </head>
@@ -526,7 +532,7 @@
     </main>
 
     <footer>
-        © 2025 ProfRates Բոլոր իրավունքները պահպանված են
+        <p>© 2025 ProfRates Բոլոր իրավունքները պահպանված են</p>
     </footer>
 
     <script src="js_codes/rate_arm.js"></script>

@@ -19,6 +19,9 @@
             background-position: center;
             background-attachment: fixed;
             min-height: 100vh;
+            color: #1a1a1a;
+            display: flex;
+            flex-direction: column;
         }
 
         /* ===== HEADER ===== */
@@ -26,6 +29,7 @@
             background: linear-gradient(135deg, #6b46c1 0%, #7c3aed 100%);
             padding: 15px 0;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            flex-shrink: 0;
         }
 
         .header-content {
@@ -64,11 +68,18 @@
         .nav-link {
             color: white;
             text-decoration: none;
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 500;
             display: flex;
             align-items: center;
             gap: 8px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            background: rgba(255, 255, 255, 0.15);
         }
 
         .globe-icon {
@@ -94,6 +105,8 @@
             max-width: 1300px;
             margin: 40px auto;
             padding: 0 30px;
+            flex: 1;
+            width: 100%;
         }
 
         .page-title {
@@ -113,6 +126,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
             gap: 26px;
+            min-height: 200px;
         }
 
         .rate-card {
@@ -123,6 +137,12 @@
             gap: 20px;
             box-shadow: 0 6px 20px rgba(0,0,0,0.08);
             position: relative;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        
+        .rate-card.removing {
+            opacity: 0;
+            transform: translateX(-100%);
         }
 
         .avatar {
@@ -325,13 +345,40 @@
 
         /* ===== FOOTER ===== */
         footer {
-            margin-top: 60px;
             background: linear-gradient(135deg, #6b46c1 0%, #7c3aed 100%);
             padding: 24px 0;
             color: white;
             text-align: center;
             font-size: 16px;
             font-weight: 500;
+            margin-top: 60px;
+            flex-shrink: 0;
+        }
+        
+        /* Empty state message */
+        .empty-state {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 60px 20px;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            display: none;
+        }
+        
+        .empty-state.show {
+            display: block;
+        }
+        
+        .empty-state h3 {
+            font-size: 24px;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+        }
+        
+        .empty-state p {
+            font-size: 16px;
+            color: #666;
         }
 
         /* Responsive tweaks */
@@ -372,9 +419,14 @@
     <div class="page-title">My Ratings</div>
     <div class="subtitle">4 ratings submitted</div>
 
-    <section class="ratings-grid">
+    <section class="ratings-grid" id="ratingsGrid">
+        <!-- Empty state message -->
+        <div class="empty-state" id="emptyState">
+            <h3>No Ratings Found</h3>
+            <p>You haven't submitted any ratings yet. Rate professors on the home page.</p>
+        </div>
 
-        <div class="rate-card">
+        <div class="rate-card" data-professor="Ann Johnson" data-hours="12">
             <div class="avatar"><img src="Ann_Johnson.jpg" alt="Ann Johnson"></div>
             <div class="rate-info">
                 <div class="prof-name">Ann Johnson</div>
@@ -388,11 +440,11 @@
             </div>
             <div class="card-actions">
                 <button class="icon-btn edit-btn" data-review="Excellent professor! Very knowledgeable and always willing to help.">✎</button>
-                <button class="icon-btn" onclick="window.location.href='ratings_eng2.html'">🗑</button>
+                <button class="icon-btn delete-btn">🗑</button>
             </div>
         </div>
 
-        <div class="rate-card">
+        <div class="rate-card" data-professor="Tom Miller" data-hours="2">
             <div class="avatar"><img src="Tom_Miller.jpg" alt="Tom Miller"></div>
             <div class="rate-info">
                 <div class="prof-name">Tom Miller</div>
@@ -406,11 +458,11 @@
             </div>
             <div class="card-actions">
                 <button class="icon-btn edit-btn" data-review="Best professor I've had. Truly cares about students.">✎</button>
-                <button class="icon-btn">🗑</button>
+                <button class="icon-btn delete-btn">🗑</button>
             </div>
         </div>
 
-        <div class="rate-card">
+        <div class="rate-card" data-professor="David Collins" data-hours="48">
             <div class="avatar"><img src="David_Collins.jpg" alt="David Collins"></div>
             <div class="rate-info">
                 <div class="prof-name">David Collins</div>
@@ -424,11 +476,11 @@
             </div>
             <div class="card-actions">
                 <button class="icon-btn edit-btn" data-review="Strong OOP knowledge, sometimes hard to reach.">✎</button>
-                <button class="icon-btn">🗑</button>
+                <button class="icon-btn delete-btn">🗑</button>
             </div>
         </div>
 
-        <div class="rate-card">
+        <div class="rate-card" data-professor="Joyce Parker" data-hours="24">
             <div class="avatar"><img src="Joyce_Parker.jpg" alt="Joyce Parker"></div>
             <div class="rate-info">
                 <div class="prof-name">Joyce Parker</div>
@@ -442,7 +494,7 @@
             </div>
             <div class="card-actions">
                 <button class="icon-btn edit-btn" data-review="Good instructor, material sometimes moves fast.">✎</button>
-                <button class="icon-btn">🗑</button>
+                <button class="icon-btn delete-btn">🗑</button>
             </div>
         </div>
 
@@ -471,8 +523,12 @@
     const reviewTextarea = document.getElementById('reviewText');
     const charCounter = document.getElementById('charCounter');
     const saveBtn = document.getElementById('saveReview');
+    const ratingsGrid = document.getElementById('ratingsGrid');
+    const emptyState = document.getElementById('emptyState');
     
     const editButtons = document.querySelectorAll('.edit-btn');
+    const deleteButtons = document.querySelectorAll('.delete-btn');
+    const subtitle = document.querySelector('.subtitle');
     
     let currentReviewCard = null;
     
@@ -494,11 +550,55 @@
         }
     }
     
+    function updateSubtitle() {
+        const remainingCards = document.querySelectorAll('.rate-card:not(.removing)').length;
+        subtitle.textContent = `${remainingCards} ratings submitted`;
+        
+        // Show empty state if no cards left
+        if (remainingCards === 0) {
+            emptyState.classList.add('show');
+        } else {
+            emptyState.classList.remove('show');
+        }
+    }
+    
+    function removeCard(card) {
+        card.classList.add('removing');
+        setTimeout(() => {
+            card.remove();
+            updateSubtitle();
+        }, 300);
+    }
+    
+    // Edit functionality
     editButtons.forEach(button => {
         button.addEventListener('click', function() {
             const reviewText = this.getAttribute('data-review');
             const reviewCard = this.closest('.rate-card').querySelector('.rate-text');
             openEditModal(reviewText, reviewCard);
+        });
+    });
+    
+    // Delete functionality
+    deleteButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const rateCard = this.closest('.rate-card');
+            const professorName = rateCard.getAttribute('data-professor');
+            const hours = parseInt(rateCard.getAttribute('data-hours'));
+            
+            // Choose which two professors show the alert message
+            // I'll choose "Ann Johnson" and "David Collins" to show the alert
+            // The other two ("Tom Miller" and "Joyce Parker") will be removable
+            
+            if (professorName === "Ann Johnson" || professorName === "David Collins") {
+                // Show alert message in English for these two professors
+                alert(`Rating cannot be removed after ${hours} hours.`);
+            } else {
+                // Remove the card for the other two professors
+                if (confirm("Are you sure you want to delete this rating?")) {
+                    removeCard(rateCard);
+                }
+            }
         });
     });
     
@@ -528,6 +628,9 @@
             editModal.classList.remove('open');
         }
     });
+    
+    // Initialize subtitle count
+    updateSubtitle();
 </script>
 
 </body>

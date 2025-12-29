@@ -20,12 +20,14 @@
             min-height: 100vh;
         }
 
-        /* Header */
-        header {
-            background: linear-gradient(135deg, #6b46c1 0%, #7c3aed 100%);
-            padding: 15px 0;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
+       header {
+    background: linear-gradient(135deg, #6b46c1 0%, #7c3aed 100%);
+    padding: 15px 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: sticky;  /* Makes it stick to the top when scrolling */
+    top: 0;           /* Sticks to the top of the viewport */
+    z-index: 1000;    /* Ensures it stays above other content */
+}
 
         .header-content {
             max-width: 1400px;
@@ -59,7 +61,7 @@
             transform: translateX(-50%);
         }
 
-        .nav-link {
+       .nav-link {
             color: white;
             text-decoration: none;
             font-size: 16px;
@@ -75,6 +77,7 @@
         .nav-link:hover {
             background: rgba(255, 255, 255, 0.15);
         }
+        
         .icon {
             font-size: 20px;
         }
@@ -91,27 +94,15 @@
             position: relative;
         }
 
-        .my-rates-btn {
-            background: white;
-            color: #6b46c1;
-            padding: 10px 28px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 17px;
-        }
-
-        .logout-wrapper {
-            position: relative;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .logout-btn {
+        .login-btn {
             font-size: 18px;
             font-weight: 500;
             cursor: pointer;
-        }
+            color: #6b46c1;
+            background: white;
+            padding: 10px 28px; 
+            border-radius: 8px;
+        }       
 
         /* Main Content */
         main {
@@ -172,7 +163,6 @@
             background-position: left 10px center; 
         }
 
-
         /* Professors Grid */
         .professors-grid {
             display: grid;
@@ -197,34 +187,9 @@
             transform: translateY(-3px);
             box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
         }
-
+        
         .professor-card.hidden {
             display: none;
-        }
-
-        .no-results {
-            grid-column: 1 / -1;
-            text-align: center;
-            padding: 60px 20px;
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(10px);
-            border-radius: 25px;
-            display: none;
-        }
-
-        .no-results.show {
-            display: block;
-        }
-
-        .no-results h3 {
-            font-size: 24px;
-            color: #1a1a1a;
-            margin-bottom: 12px;
-        }
-
-        .no-results p {
-            font-size: 16px;
-            color: #666;
         }
 
         .professor-image {
@@ -234,7 +199,6 @@
             object-fit: cover;
             flex-shrink: 0;
         }
-
         .professor-image:hover {
             cursor: pointer;
         }
@@ -320,7 +284,6 @@
             font-weight: 400;
         }
 
-        /* Footer */
         footer {
             background: linear-gradient(135deg, #6b46c1 0%, #7c3aed 100%);
             padding: 25px 0;
@@ -329,6 +292,29 @@
             font-size: 16px;
             font-weight: 500;
             margin-top: 40px;
+        }
+        
+        /* No Results Message */
+        .no-results {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 60px 20px;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            display: none;
+        }
+        .no-results.show {
+            display: block;
+        }
+        .no-results h3 {
+            font-size: 24px;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+        }
+        .no-results p {
+            font-size: 16px;
+            color: #666;
         }
     </style>
 </head>
@@ -341,18 +327,15 @@
             </div>
             <div class="center-nav">
                 <a href="#" class="nav-link"><span class="icon"></span> Home</a>
-                <a href="about.html" class="nav-link"><span class="icon"></span> About Us</a>
-                <a href="privacy_eng.html" class="nav-link"><span class="icon"></span> Privacy</a>
-                <a href="home_arm.html" class="nav-link">
+                <a href="about_guest_eng.html" class="nav-link"><span class="icon"></span> About Us</a>
+                <a href="privacy_eng_guest.html" class="nav-link"><span class="icon"></span> Privacy</a>
+                <a href="home_arm_guest.html" class="nav-link">
                     <img src="white-logo.png" alt="Globe" class="globe-icon">
                     Arm
                 </a>
             </div>
             <div class="right-nav">
-                <a href="#" class="nav-link my-rates-btn" onclick="window.location.href='ratings_eng.html'">My ratings</a>
-                <div class="logout-wrapper">
-                    <a href="login_eng.html" class="nav-link logout-btn">Logout</a>
-                </div>
+                    <a href="login_eng.html" class="nav-link login-btn">Login</a>
             </div>
         </div>
     </header>
@@ -364,8 +347,8 @@
             <div class="filter-group">
                 <select class="filter-select" id="chairFilter">
                     <option value="all">Filter by chair</option>
-                    <option value="Computer Science">Computer Science</option>
-                    <option value="Civil Engineering">Civil Engineering</option>
+                    <option value="Computer Science">Computer systems and networks</option>
+                    <option value="Civil Engineering">Information security and software provision</option>
                     <option value="Machine Learning">Machine Learning</option>
                     <option value="OOP Engineer">OOP Engineer</option>
                 </select>
@@ -376,7 +359,7 @@
                     <option value="highest">Highest rated</option>
                     <option value="lowest">Lowest rated</option>
                     <option value="a-z">Name (A-Z)</option> 
-                    <option value="z-a">Name (Z-A)</option> 
+                    <option value="z-a">Name (Z-A)</option>  
                 </select>
             </div>
             <div class="filter-group">
@@ -393,7 +376,7 @@
 
             <!-- Professor 1 -->
             <div class="professor-card" data-rating="4.5" data-name="Ann Johnson" data-department="Computer Science">
-                <img src="Ann_Johnson.jpg" alt="Ann Johnson" class="professor-image" data-link="prof_eng.html">
+                <img src="Ann_Johnson.jpg" alt="Ann Johnson" class="professor-image" data-link="prof_eng_guest.html">
                 <div class="professor-info">
                     <h2 class="professor-name">Ann Johnson</h2>
                     <div class="rating">
@@ -461,7 +444,7 @@
         </div>
 
         <div class="view-top-container">
-            <a href="top_eng.html" class="view-top-btn">
+            <a href="top_eng_guest.html" class="view-top-btn">
                 <span class="plus-icon">+</span>
                 View Top Professors
             </a>
@@ -483,9 +466,8 @@
         // Click handler for professor images
         document.querySelectorAll('.professor-image').forEach(img => {
             img.addEventListener('click', () => {
-                if (img.dataset.link) {
-                    window.location.href = img.dataset.link;
-                }
+                const target = img.dataset.link || img.getAttribute('data-link');
+                if (target) window.location.href = target;
             });
         });
 
@@ -541,6 +523,9 @@
         sortFilter.addEventListener('change', applyFilters);
         chairFilter.addEventListener('change', applyFilters);
         searchInput.addEventListener('input', applyFilters);
+
+        // Apply filters on page load to hide the no-results message initially
+        applyFilters();
     </script>
 </body>
 </html>
