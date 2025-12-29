@@ -24,7 +24,6 @@
             flex-direction: column;
         }
 
-        /* ===== HEADER ===== */
         header {
             background: linear-gradient(135deg, #6b46c1 0%, #7c3aed 100%);
             padding: 15px 0;
@@ -94,6 +93,7 @@
             gap: 30px;
             align-items: center;
         }
+
         .logout-btn {
             color: white;
             font-size: 18px;
@@ -101,7 +101,6 @@
             text-decoration: none;
         }
 
-        /* ===== MAIN ===== */
         main {
             max-width: 1300px;
             margin: 40px auto;
@@ -127,7 +126,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
             gap: 26px;
-            min-height: 200px; /* Ensure grid has minimum height */
+            min-height: 200px;
         }
 
         .rate-card {
@@ -158,11 +157,13 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            display:block;
         }
 
         .rate-info {
             flex: 1;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
         }
 
         .prof-name {
@@ -189,22 +190,34 @@
             color: #f2b705;
             font-size: 18px;
         }
+
         .rating-num {
             font-size: 18px;
             font-weight: 500;
             color: #201a2a;
         }
 
+        .review-wrapper {
+            min-width: 0;
+            margin-bottom: 10px;
+            flex-grow: 1; /* Allows it to take available space */
+        }
+
         .rate-text {
             font-size: 15px;
             color: #555;
-            margin-bottom: 10px;
             line-height: 1.5;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100%;
+            font-weight: 300px;
         }
 
         .rate-date {
             font-size: 13px;
             color: #777;
+            margin-top: auto;
         }
 
         .card-actions {
@@ -224,9 +237,9 @@
             color: #6b46c1;
             cursor: pointer;
             font-size: 16px;
-            display:flex;
-            align-items:center;
-            justify-content:center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             transition: all 0.2s;
         }
 
@@ -235,7 +248,6 @@
             color: white;
         }
 
-        /* ===== EDIT REVIEW MODAL (using your popup design) ===== */
         .popup-overlay {
             background-color: rgba(0, 0, 0, 0.3);
             opacity: 0;
@@ -273,7 +285,6 @@
             font-weight: bold;
             color: #4e3791;
             cursor: pointer;
-            transition: color 0.2s ease;
         }
 
         .close-icon:hover {
@@ -281,7 +292,7 @@
         }
 
         .popup-inner h2 {
-            margin: 10px 0 10px 0;
+            margin: 10px 0;
             font-size: 30px;
             font-weight: 600;
             color: #4e3791;
@@ -290,7 +301,7 @@
         .popup-inner p {
             font-size: 14px;
             color: #666;
-            margin: 0 0 20px 0;
+            margin-bottom: 20px;
         }
 
         .popup-textarea {
@@ -300,17 +311,8 @@
             border: 1px solid #ddd;
             border-radius: 4px;
             font-size: 15px;
-            font-family: inherit;
-            background-color: white;
-            box-sizing: border-box;
-            margin-bottom: 8px;
             resize: vertical;
-            line-height: 1.5;
-        }
-
-        .popup-textarea:focus {
-            outline: none;
-            border-color: #6145b1;
+            margin-bottom: 8px;
         }
 
         .char-counter {
@@ -333,9 +335,6 @@
             border-radius: 4px;
             cursor: pointer;
             font-size: 16px;
-            text-align: center;
-            transition: transform 0.2s, box-shadow 0.2s;
-            margin-top: 10px;
             font-weight: 600;
         }
 
@@ -346,20 +345,18 @@
         }
 
         footer {
-      /*background-color: #4b2ea7;*/
-        background: linear-gradient(135deg, #6b46c1 0%, #7c3aed 100%);
-        color: white;
-        text-align: center;
-         padding: 15px 0;
-        margin-top: 40px;
+            background: linear-gradient(135deg, #6b46c1 0%, #7c3aed 100%);
+            color: white;
+            text-align: center;
+            padding: 25px 0;
+            margin-top: auto;
         }
 
         footer p {
-        margin-top: 10px;
-        font-size: 14px;
-        color: #fff;
+            font-size: 16px;
+            font-weight: 500;
         }
-        /* Empty state message */
+
         .empty-state {
             grid-column: 1 / -1;
             text-align: center;
@@ -369,27 +366,13 @@
             border-radius: 25px;
             display: none;
         }
-        
+
         .empty-state.show {
             display: block;
         }
-        
-        .empty-state h3 {
-            font-size: 24px;
-            color: #1a1a1a;
-            margin-bottom: 12px;
-        }
-        
-        .empty-state p {
-            font-size: 16px;
-            color: #666;
-        }
 
-        /* Responsive tweaks */
         @media (max-width: 760px) {
-            .center-nav { transform: translateX(-50%); left: 50%; gap:12px; }
             .ratings-grid { grid-template-columns: 1fr; }
-            .header-content { padding: 0 16px; }
             .popup-inner { width: 90%; padding: 20px; }
         }
     </style>
@@ -402,7 +385,6 @@
             <img src="logo.png" alt="Logo">
             ProfRates
         </div>
-
         <nav class="center-nav">
             <a class="nav-link" href="home_arm.html">Գլխավոր</a>
             <a class="nav-link" href="about_armenian.html">Մեր Մասին</a>
@@ -411,7 +393,6 @@
                 <img src="white-logo.png" alt="Eng" class="globe-icon"> Eng
             </a>
         </nav>
-
         <div class="right-nav">
             <a class="logout-btn" href="login_arm.html">Ելք</a>
         </div>
@@ -423,12 +404,12 @@
     <div class="subtitle">4 ուղարկված գնահատական</div>
 
     <section class="ratings-grid" id="ratingsGrid">
-        <!-- Empty state message -->
         <div class="empty-state" id="emptyState">
             <h3>Գնահատականներ չկան</h3>
             <p>Դուք դեռ գնահատականներ չեք ուղարկել։ Գնահատեք դասախոսներին գլխավոր էջում։</p>
         </div>
 
+        <!-- All 4 professors restored -->
         <div class="rate-card" data-professor="Աննա Ջոնսոն" data-hours="12">
             <div class="avatar"><img src="Ann_Johnson.jpg" alt="Ann Johnson"></div>
             <div class="rate-info">
@@ -438,11 +419,13 @@
                     <div class="stars">★★★★★</div>
                     <div class="rating-num">4.5</div>
                 </div>
-                <div class="rate-text">«Անգերազանցելի դասախոս: Խորիմաստ և միշտ պատրաստ օգնել ուսանողներին հասկանալ բարդ թեմաները:»</div>
+                <div class="review-wrapper">
+                    <div class="rate-text" data-full-review="Անգերազանցելի դասախոս: Խորիմաստ և միշտ պատրաստ օգնել ուսանողներին հասկանալ բարդ թեմաները:">«Անգերազանցելի դասախոս: Խորիմաստ և միշտ պատրաստ օգնել ուսանողներին հասկանալ բարդ թեմաները:»</div>
+                </div>
                 <div class="rate-date">Հոկտեմբերի 15, 2025</div>
             </div>
             <div class="card-actions">
-                <button class="icon-btn edit-btn" aria-label="Edit" data-review="Անգերազանցելի դասախոս: Խորիմաստ և միշտ պատրաստ օգնել ուսանողներին հասկանալ բարդ թեմաները.">✎</button>
+                <button class="icon-btn edit-btn" aria-label="Edit">✎</button>
                 <button class="icon-btn delete-btn" aria-label="Delete">🗑</button>
             </div>
         </div>
@@ -452,15 +435,17 @@
             <div class="rate-info">
                 <div class="prof-name">Թոմ Միլլեր</div>
                 <div class="department">Civil Engineering</div>
-               <div class="rating-row">
+                <div class="rating-row">
                     <div class="stars">★★★★★</div>
                     <div class="rating-num">4.7</div>
                 </div>
-                <div class="rate-text">«Լավագույն դասախոսներից մեկը։ Նրա դասընթացները ներգրավող են և նա իսկապես հոգ է տանում ուսանողների հաջողության մասին.»</div>
+                <div class="review-wrapper">
+                    <div class="rate-text" data-full-review="Լավագույն դասախոսներից մեկը։ Նրա դասընթացները ներգրավող են և նա իսկապես հոգ է տանում ուսանողների հաջողության մասին.">«Լավագույն դասախոսներից մեկը։ Նրա դասընթացները ներգրավող են և նա իսկապես հոգ է տանում ուսանողների հաջողության մասին.»</div>
+                </div>
                 <div class="rate-date">Ապրիլի 10, 2025</div>
             </div>
             <div class="card-actions">
-                <button class="icon-btn edit-btn" aria-label="Edit" data-review="Լավագույն դասախոսներից մեկը։ Նրա դասընթացները ներգրավող են և նա իսկապես հոգ է տանում ուսանողների հաջողության մասին.">✎</button>
+                <button class="icon-btn edit-btn" aria-label="Edit">✎</button>
                 <button class="icon-btn delete-btn" aria-label="Delete">🗑</button>
             </div>
         </div>
@@ -474,11 +459,13 @@
                     <div class="stars">★★★★★</div>
                     <div class="rating-num">3.6</div>
                 </div>
-                <div class="rate-text">«Հիանալի գիտելիքներ OOP կոնցեպտներում։ Երբեմն դժվար է հասնել նրա գոհունակությանը, բայց ընդհանուր առմամբ լավ դասախոս.»</div>
+                <div class="review-wrapper">
+                    <div class="rate-text" data-full-review="Հիանալի գիտելիքներ OOP կոնցեպտներում։ Երբեմն դժվար է հասնել նրա գոհունակությանը, բայց ընդհանուր առմամբ լավ դասախոս.">«Հիանալի գիտելիքներ OOP կոնցեպտներում։ Երբեմն դժվար է հասնել նրա գոհունակությանը, բայց ընդհանուր առմամբ լավ դասախոս.»</div>
+                </div>
                 <div class="rate-date">Սեպտեմբերի 28, 2024</div>
             </div>
             <div class="card-actions">
-                <button class="icon-btn edit-btn" aria-label="Edit" data-review="Հիանալի գիտելիքներ OOP կոնցեպտներում։ Երբեմն դժվար է հասնել նրա գոհունակությանը, բայց ընդհանուր առմամբ լավ դասախոս.">✎</button>
+                <button class="icon-btn edit-btn" aria-label="Edit">✎</button>
                 <button class="icon-btn delete-btn" aria-label="Delete">🗑</button>
             </div>
         </div>
@@ -492,11 +479,13 @@
                     <div class="stars">★★★★★</div>
                     <div class="rating-num">4.0</div>
                 </div>
-                <div class="rate-text">«Ուշադիր դասախոս, բայց նյութը երբեմն արագ է անցնում. գործնական ժամերը օգտակար են.»</div>
+                <div class="review-wrapper">
+                    <div class="rate-text" data-full-review="Ուշադիր դասախոս, բայց նյութը երբեմն արագ է անցնում. գործնական ժամերը օգտակար են.">«Ուշադիր դասախոս, բայց նյութը երբեմն արագ է անցնում. գործնական ժամերը օգտակար են.»</div>
+                </div>
                 <div class="rate-date">Օգոստոսի 5, 2024</div>
             </div>
             <div class="card-actions">
-                <button class="icon-btn edit-btn" aria-label="Edit" data-review="Ուշադիր դասախոս, բայց նյութը երբեմն արագ է անցնում. գործնական ժամերը օգտակար են.">✎</button>
+                <button class="icon-btn edit-btn" aria-label="Edit">✎</button>
                 <button class="icon-btn delete-btn" aria-label="Delete">🗑</button>
             </div>
         </div>
@@ -508,13 +497,12 @@
     <p>© 2025 ProfRates Բոլոր իրավունքները պաշտպանված են</p>
 </footer>
 
-<!-- Edit Review Modal -->
 <div class="popup-overlay" id="editModal">
     <div class="popup-inner">
-        <span class="close-icon" id="closeModal">&times;</span>
+        <span class="close-icon" id="closeModal">×</span>
         <h2>Խմբագրել մեկնաբանությունը</h2>
         <p>Խմբագրեք ձեր մեկնաբանությունը ստորև</p>
-        <textarea class="popup-textarea" id="reviewText" placeholder="Գրեք ձեր մեկնաբանությունը այստեղ..." maxlength="350"></textarea>
+        <textarea class="popup-textarea" id="reviewText" maxlength="350"></textarea>
         <div class="char-counter" id="charCounter">0/350</div>
         <button class="popup-submit" id="saveReview">Պահպանել փոփոխությունները</button>
     </div>
@@ -526,45 +514,30 @@
     const reviewTextarea = document.getElementById('reviewText');
     const charCounter = document.getElementById('charCounter');
     const saveBtn = document.getElementById('saveReview');
-    const ratingsGrid = document.getElementById('ratingsGrid');
-    const emptyState = document.getElementById('emptyState');
-    
-    const editButtons = document.querySelectorAll('.edit-btn');
-    const deleteButtons = document.querySelectorAll('.delete-btn');
     const subtitle = document.querySelector('.subtitle');
-    
-    let currentReviewCard = null;
-    
-    function openEditModal(reviewText, reviewCard) {
-        reviewTextarea.value = reviewText;
+    const emptyState = document.getElementById('emptyState');
+
+    let currentRateTextElement = null;
+
+    function openEditModal(fullReview, rateTextEl) {
+        reviewTextarea.value = fullReview;
         updateCharCounter();
-        currentReviewCard = reviewCard;
+        currentRateTextElement = rateTextEl;
         editModal.classList.add('open');
     }
-    
+
     function updateCharCounter() {
         const length = reviewTextarea.value.length;
         charCounter.textContent = `${length}/350`;
-        
-        if (length >= 330) {
-            charCounter.classList.add('limit');
-        } else {
-            charCounter.classList.remove('limit');
-        }
+        charCounter.classList.toggle('limit', length >= 330);
     }
-    
+
     function updateSubtitle() {
-        const remainingCards = document.querySelectorAll('.rate-card:not(.removing)').length;
-        subtitle.textContent = `${remainingCards} ուղարկված գնահատական`;
-        
-        // Show empty state if no cards left
-        if (remainingCards === 0) {
-            emptyState.classList.add('show');
-        } else {
-            emptyState.classList.remove('show');
-        }
+        const count = document.querySelectorAll('.rate-card:not(.removing)').length;
+        subtitle.textContent = `${count} ուղարկված գնահատական`;
+        emptyState.classList.toggle('show', count === 0);
     }
-    
+
     function removeCard(card) {
         card.classList.add('removing');
         setTimeout(() => {
@@ -572,67 +545,54 @@
             updateSubtitle();
         }, 300);
     }
-    
-    // Edit functionality
-    editButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const reviewText = this.getAttribute('data-review');
-            const reviewCard = this.closest('.rate-card').querySelector('.rate-text');
-            openEditModal(reviewText, reviewCard);
+
+    document.querySelectorAll('.edit-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const rateTextEl = this.closest('.rate-card').querySelector('.rate-text');
+            let fullReview = rateTextEl.getAttribute('data-full-review');
+            if (!fullReview) {
+                fullReview = rateTextEl.textContent.slice(1, -1).trim();
+            }
+            openEditModal(fullReview, rateTextEl);
         });
     });
-    
-    // Delete functionality
-    deleteButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const rateCard = this.closest('.rate-card');
-            const professorName = rateCard.getAttribute('data-professor');
-            const hours = parseInt(rateCard.getAttribute('data-hours'));
-            
-            // Choose which two professors show the alert message
-            // I'll choose "Աննա Ջոնսոն" and "Դավիթ Կոլլինս" to show the alert
-            // The other two ("Թոմ Միլլեր" and "Ջոյս Պարկեր") will be removable
-            
-            if (professorName === "Աննա Ջոնսոն" || professorName === "Դավիթ Կոլլինս") {
-                // Show alert message in Armenian for these two professors
+
+    document.querySelectorAll('.delete-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const card = this.closest('.rate-card');
+            const name = card.getAttribute('data-professor');
+            const hours = parseInt(card.getAttribute('data-hours'));
+
+            if (name === "Աննա Ջոնսոն" || name === "Դավիթ Կոլլինս") {
                 alert(`Գնահատականը չի կարող հեռացվել ${hours} ժամ հետո։`);
-            } else {
-                // Remove the card for the other two professors
-                if (confirm("Վստա՞հ եք, որ ցանկանում եք հեռացնել այս գնահատականը:")) {
-                    removeCard(rateCard);
-                }
+            } else if (confirm("Վստա՞հ եք, որ ցանկանում եք հեռացնել այս գնահատականը:")) {
+                removeCard(card);
             }
         });
     });
-    
-    closeModalBtn.addEventListener('click', function() {
+
+    closeModalBtn.onclick = () => editModal.classList.remove('open');
+    editModal.onclick = (e) => { if (e.target === editModal) editModal.classList.remove('open'); };
+    document.onkeydown = (e) => { if (e.key === 'Escape' && editModal.classList.contains('open')) editModal.classList.remove('open'); };
+
+    reviewTextarea.oninput = updateCharCounter;
+
+    saveBtn.onclick = () => {
+        if (!currentRateTextElement) return;
+
+        const newText = reviewTextarea.value.trim();
+        if (!newText) {
+            alert('Մեկնաբանությունը չի կարող դատարկ լինել։');
+            return;
+        }
+
+        currentRateTextElement.setAttribute('data-full-review', newText);
+        currentRateTextElement.textContent = `«${newText}»`;
+
         editModal.classList.remove('open');
-    });
-    
-    editModal.addEventListener('click', function(e) {
-        if (e.target === editModal) {
-            editModal.classList.remove('open');
-        }
-    });
-    
-    reviewTextarea.addEventListener('input', updateCharCounter);
-    
-    saveBtn.addEventListener('click', function() {
-        if (currentReviewCard) {
-            const newReview = reviewTextarea.value;
-            currentReviewCard.textContent = `«${newReview}»`;
-            editModal.classList.remove('open');
-            alert('Մեկնաբանությունը հաջողությամբ թարմացվել է։');
-        }
-    });
-    
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && editModal.classList.contains('open')) {
-            editModal.classList.remove('open');
-        }
-    });
-    
-    // Initialize subtitle count
+        alert('Մեկնաբանությունը հաջողությամբ թարմացվել է։');
+    };
+
     updateSubtitle();
 </script>
 
